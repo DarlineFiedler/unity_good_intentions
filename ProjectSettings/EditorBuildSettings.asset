@@ -6,9 +6,57 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/scenes/Menu.unity
     guid: 0d6b7d98bd2dcd5489c14cdac5c6b1ed
   - enabled: 1
-    path: Assets/Scenes/Game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/scenes/Forest/House.unity
+    guid: 88bd83a7be92c4743aa76afe88bb36e7
+  - enabled: 1
+    path: Assets/scenes/Forest/Home.unity
+    guid: 1eacd71f503f9044fbf1bf013ed15cfd
+  - enabled: 1
+    path: Assets/scenes/Forest/Tree.unity
+    guid: ce62a811615911944a7b5957d9fb07c9
+  - enabled: 1
+    path: Assets/scenes/Forest/Tower1.unity
+    guid: c5617d3a2da5397458283c73dd03b927
+  - enabled: 1
+    path: Assets/scenes/Forest/Tube1.unity
+    guid: 0c992759c65c0a2439b6900d91358515
+  - enabled: 1
+    path: Assets/scenes/Forest/Spike1.unity
+    guid: 255fa592b6124744792622b3dc20c351
+  - enabled: 1
+    path: Assets/scenes/Forest/Bell.unity
+    guid: 47046dbd2988e3046af3cdcef3ee2264
+  - enabled: 1
+    path: Assets/scenes/Forest/Spike3.unity
+    guid: 862d128892b67684d8f4f5ab5d829918
+  - enabled: 1
+    path: Assets/scenes/Forest/Spike2.unity
+    guid: 5bd0c5d4602286142af6344300969ea2
+  - enabled: 1
+    path: Assets/scenes/Forest/Item.unity
+    guid: 2cbbacad6c14ad94b80807ac23707530
+  - enabled: 1
+    path: Assets/scenes/Forest/Tube2.unity
+    guid: 59156669b146ff54bb03c76b96355787
+  - enabled: 1
+    path: Assets/scenes/Forest/Shroom4.unity
+    guid: cb6592ca436be8743b3014c41bb46745
+  - enabled: 1
+    path: Assets/scenes/Forest/Shroom1.unity
+    guid: aaa81590c94394a46b875d277aaf92a2
+  - enabled: 1
+    path: Assets/scenes/Forest/Tower2.unity
+    guid: 0050b65fa6627dc4ba9e205a79af64fd
+  - enabled: 1
+    path: Assets/scenes/Forest/Boss.unity
+    guid: 21a043abc0c98f547a5eba23126326d0
+  - enabled: 1
+    path: Assets/scenes/Forest/Shroom2.unity
+    guid: 4217ec2ddc957c445ac45bd564f717f9
+  - enabled: 1
+    path: Assets/scenes/Forest/Shroom3.unity
+    guid: b9a40d9c50bbf1e478ff71bd62248a14
   m_configObjects: {}
