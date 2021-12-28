@@ -13,7 +13,11 @@ public class LevelExit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(LoadNextLevel());
+
+        // set nextSceneInde
+        PlayerPrefs.SetInt("previosSceneIndex", currentSceneIndex);
     }
 
     IEnumerator LoadNextLevel()
