@@ -12,13 +12,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float jumpSpeed = 5f;
 
-    PolygonCollider2D polygonCollider;
-
     Vector2 moveInput;
 
     Rigidbody2D myRigidbody;
 
-    PolygonCollider2D myPolygonCollider;
+   // PolygonCollider2D polygonCollider;
+   // PolygonCollider2D myPolygonCollider;
+   CapsuleCollider2D myCapsuleCollider;
+  
 
     Sprite sprite;
 
@@ -29,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myPolygonCollider = GetComponent<PolygonCollider2D>();
+        //myPolygonCollider = GetComponent<PolygonCollider2D>();
+        myCapsuleCollider = GetComponent<CapsuleCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -38,17 +40,17 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
 
-        polygonCollider = GetComponent<PolygonCollider2D>();
-        sprite = GetComponent<SpriteRenderer>().sprite;
-        polygonCollider.pathCount = sprite.GetPhysicsShapeCount();
+        //polygonCollider = GetComponent<PolygonCollider2D>();
+        //sprite = GetComponent<SpriteRenderer>().sprite;
+        //polygonCollider.pathCount = sprite.GetPhysicsShapeCount();
 
-        List<Vector2> path = new List<Vector2>();
+        /* List<Vector2> path = new List<Vector2>();
         for (int i = 0; i < polygonCollider.pathCount; i++)
         {
             path.Clear();
             sprite.GetPhysicsShape (i, path);
             polygonCollider.SetPath(i, path.ToArray());
-        }
+        } */
     }
 
     void OnMove(InputValue value)
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!myPolygonCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -89,8 +91,8 @@ public class PlayerMovement : MonoBehaviour
         if (playerHasHorizontalSpeed)
         {
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.3f : -0.3f;
-            transform.localScale = new Vector2(turnPlayer, 0.3f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.25f : -0.25f;
+            transform.localScale = new Vector2(turnPlayer, 0.25f);
         }
     }
 }

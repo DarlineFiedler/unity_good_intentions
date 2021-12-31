@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6859716483618155041}
   - component: {fileID: 6859716483618155043}
   - component: {fileID: 6859716483618155042}
+  - component: {fileID: 1699463891}
   m_Layer: 7
   m_Name: V (Player)
   m_TagString: Untagged
@@ -31,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 6859716483618155485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.57, y: -5.56, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -116,8 +117,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2099196309
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1c2bcea2b5f5ca40ad489a2f2fee1ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,7 +138,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6859716483618155485}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 948635decc0d29746a101d5f0d350d8d, type: 2}
   m_IsTrigger: 0
@@ -779,5 +780,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f18b283265a6154d89bc6482f0c8eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 10
-  jumpSpeed: 28
+  runSpeed: 9
+  jumpSpeed: 20
+--- !u!70 &1699463891
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6859716483618155485}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 948635decc0d29746a101d5f0d350d8d, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.3335733, y: -0.7601018}
+  m_Size: {x: 1.2874737, y: 4.993331}
+  m_Direction: 0
