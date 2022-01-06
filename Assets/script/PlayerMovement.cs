@@ -16,10 +16,9 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D myRigidbody;
 
-   // PolygonCollider2D polygonCollider;
-   // PolygonCollider2D myPolygonCollider;
-   CapsuleCollider2D myCapsuleCollider;
-  
+    // PolygonCollider2D polygonCollider;
+    // PolygonCollider2D myPolygonCollider;
+    CapsuleCollider2D myCapsuleCollider;
 
     Sprite sprite;
 
@@ -30,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+
         //myPolygonCollider = GetComponent<PolygonCollider2D>();
         myCapsuleCollider = GetComponent<CapsuleCollider2D>();
         myAnimator = GetComponent<Animator>();
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (value.isPressed)
         {
-            ///myAnimator.SetBool("isJumping", true);
+            myAnimator.SetTrigger("isJumping");
             myRigidbody.velocity +=
                 new Vector2(myRigidbody.velocity.x, jumpSpeed);
         }
