@@ -18,7 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     // PolygonCollider2D polygonCollider;
     // PolygonCollider2D myPolygonCollider;
-    CapsuleCollider2D myCapsuleCollider;
+    //CapsuleCollider2D myCapsuleCollider;
+    BoxCollider2D myBoxCollider;
 
     Sprite sprite;
 
@@ -31,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
 
         //myPolygonCollider = GetComponent<PolygonCollider2D>();
-        myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        //myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -91,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
         if (playerHasHorizontalSpeed)
         {
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.25f : -0.25f;
-            transform.localScale = new Vector2(turnPlayer, 0.25f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
+            transform.localScale = new Vector2(turnPlayer, 0.2f);
         }
     }
 }
