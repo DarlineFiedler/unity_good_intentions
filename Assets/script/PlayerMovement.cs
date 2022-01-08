@@ -4,14 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public interface IInteractions
-{
-    void OnClick();
-}
-
-public class
-PlayerMovement
-: MonoBehaviour /* , IInteractions */
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     float runSpeed = 10f;
@@ -27,10 +20,6 @@ PlayerMovement
     // PolygonCollider2D myPolygonCollider;
     CapsuleCollider2D myCapsuleCollider;
 
-    BoxCollider2D myBoxCollider;
-
-    public Collider2D miep;
-
     Sprite sprite;
 
     Animator myAnimator;
@@ -42,9 +31,7 @@ PlayerMovement
         myRigidbody = GetComponent<Rigidbody2D>();
 
         //myPolygonCollider = GetComponent<PolygonCollider2D>();
-        myBoxCollider = GetComponent<BoxCollider2D>();
-
-        ///myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        myCapsuleCollider = GetComponent<CapsuleCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -66,14 +53,14 @@ PlayerMovement
         } */
     }
 
-    public void OnMove(InputValue value)
+    void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
-        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -84,15 +71,7 @@ PlayerMovement
                 new Vector2(myRigidbody.velocity.x, jumpSpeed);
         }
     }
-/* 
-    void OnInteract(InputValue value)
-    {
-        if (myBoxCollider.IsTouching(miep))
-        {
-            Debug.Log("interact with the door");
-        }
-    }
- */
+
     void Run()
     {
         Vector2 placerVelocity =
@@ -112,8 +91,8 @@ PlayerMovement
         if (playerHasHorizontalSpeed)
         {
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
-            transform.localScale = new Vector2(turnPlayer, 0.2f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.25f : -0.25f;
+            transform.localScale = new Vector2(turnPlayer, 0.25f);
         }
     }
 }
