@@ -4,7 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public interface IInteractions
+{
+    void OnClick();
+}
+
+public class
+PlayerMovement
+: MonoBehaviour /* , IInteractions */
 {
     [SerializeField]
     float runSpeed = 10f;
@@ -20,6 +27,10 @@ public class PlayerMovement : MonoBehaviour
     // PolygonCollider2D myPolygonCollider;
     CapsuleCollider2D myCapsuleCollider;
 
+    BoxCollider2D myBoxCollider;
+
+    public Collider2D miep;
+
     Sprite sprite;
 
     Animator myAnimator;
@@ -31,7 +42,9 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
 
         //myPolygonCollider = GetComponent<PolygonCollider2D>();
-        myCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        myBoxCollider = GetComponent<BoxCollider2D>();
+
+        ///myCapsuleCollider = GetComponent<CapsuleCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
 
@@ -53,14 +66,14 @@ public class PlayerMovement : MonoBehaviour
         } */
     }
 
-    void OnMove(InputValue value)
+    public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
-        if (!myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
@@ -69,6 +82,14 @@ public class PlayerMovement : MonoBehaviour
             myAnimator.SetTrigger("isJumping");
             myRigidbody.velocity +=
                 new Vector2(myRigidbody.velocity.x, jumpSpeed);
+        }
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (myBoxCollider.IsTouching(miep))
+        {
+            Debug.Log("interact with the door");
         }
     }
 
@@ -91,8 +112,8 @@ public class PlayerMovement : MonoBehaviour
         if (playerHasHorizontalSpeed)
         {
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.25f : -0.25f;
-            transform.localScale = new Vector2(turnPlayer, 0.25f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
+            transform.localScale = new Vector2(turnPlayer, 0.2f);
         }
     }
 }
