@@ -84,7 +84,7 @@ PlayerMovement
                 new Vector2(myRigidbody.velocity.x, jumpSpeed);
         }
     }
-
+/* 
     void OnInteract(InputValue value)
     {
         if (myBoxCollider.IsTouching(miep))
@@ -92,7 +92,7 @@ PlayerMovement
             Debug.Log("interact with the door");
         }
     }
-
+ */
     void Run()
     {
         Vector2 placerVelocity =
