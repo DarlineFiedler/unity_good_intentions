@@ -2,37 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadPlayer : MonoBehaviour
+public class hitSpikes : MonoBehaviour
 {
     [SerializeField]
     private List<int> levelEntries;
 
     [SerializeField]
-    private List<Transform> spawnPoints;
+    private List<Transform> resetPoints;
 
     [SerializeField]
     private Transform player;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    float levelLoadDelay = 0.2f;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        // set Player Position
-        if (PlayerPrefs.HasKey("previosSceneIndex"))
-        {
-            SetPlayerPosition();
-        }
+        StartCoroutine(SetPlayerPosition());
+
+        Debug.Log(PlayerPrefs.GetInt("previosSceneIndex"));
     }
 
-    void SetPlayerPosition()
+    IEnumerator SetPlayerPosition()
     {
         for (int i = 0; i < levelEntries.Count; i++)
         {
             if (levelEntries[i] == PlayerPrefs.GetInt("previosSceneIndex"))
             {
+                yield return new WaitForSecondsRealtime(levelLoadDelay);
                 player.localScale =
                     new Vector2(PlayerPrefs.GetFloat("playerFacing", 0.2f),
                         0.2f);
-                player.position = spawnPoints[i].position;
+                player.position = resetPoints[i].position;
             }
         }
     }

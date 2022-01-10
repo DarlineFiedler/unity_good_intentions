@@ -9,7 +9,7 @@ public class LevelExit : MonoBehaviour
     int nextSceneIndex;
 
     [SerializeField]
-    float levelLoadDelay = 1f;
+    float levelLoadDelay = 0.2f;
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D myRigidbody;
 
-    // PolygonCollider2D polygonCollider;
-    // PolygonCollider2D myPolygonCollider;
-    //CapsuleCollider2D myCapsuleCollider;
     BoxCollider2D myBoxCollider;
 
     Sprite sprite;
@@ -27,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool isJumping;
 
+    GameObject myCollision;
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
 
-        //myPolygonCollider = GetComponent<PolygonCollider2D>();
-        //myCapsuleCollider = GetComponent<CapsuleCollider2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
     }
@@ -41,18 +38,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
-
-        //polygonCollider = GetComponent<PolygonCollider2D>();
-        //sprite = GetComponent<SpriteRenderer>().sprite;
-        //polygonCollider.pathCount = sprite.GetPhysicsShapeCount();
-
-        /* List<Vector2> path = new List<Vector2>();
-        for (int i = 0; i < polygonCollider.pathCount; i++)
-        {
-            path.Clear();
-            sprite.GetPhysicsShape (i, path);
-            polygonCollider.SetPath(i, path.ToArray());
-        } */
     }
 
     void OnMove(InputValue value)
@@ -92,9 +77,33 @@ public class PlayerMovement : MonoBehaviour
             Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         if (playerHasHorizontalSpeed)
         {
+            PlayerPrefs
+                .SetFloat("playerFacing",
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f);
             float turnPlayer =
                 Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
             transform.localScale = new Vector2(turnPlayer, 0.2f);
+            Debug.Log(PlayerPrefs.GetFloat("playerFacing"));
         }
+    }
+
+    void OnInteract(InputValue value)
+    {
+        if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Interactables")))
+        {
+            if (myCollision.tag == "Entrance")
+            {
+                myCollision.GetComponent<LevelEntrance>().Interacting();
+            }
+            if (myCollision.tag == "Mom")
+            {
+                myCollision.GetComponent<MomBehavior>().Interacting();
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        myCollision = other.gameObject;
     }
 }
