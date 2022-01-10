@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Entrance
+  - Mom
+  - Spikes
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - Background
   - Interactables
   - Bounching
-  - 
-  - 
+  - Wall
+  - Spikes
   - 
   - 
   - 
@@ -49,6 +52,9 @@ TagManager:
     locked: 0
   - name: playground
     uniqueID: 2396713845
+    locked: 0
+  - name: NPC
+    uniqueID: 301567837
     locked: 0
   - name: player
     uniqueID: 2099196309
