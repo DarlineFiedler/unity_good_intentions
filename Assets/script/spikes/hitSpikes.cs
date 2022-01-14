@@ -19,8 +19,6 @@ public class hitSpikes : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         StartCoroutine(SetPlayerPosition());
-
-        Debug.Log(PlayerPrefs.GetInt("previosSceneIndex"));
     }
 
     IEnumerator SetPlayerPosition()

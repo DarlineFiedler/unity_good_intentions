@@ -26,18 +26,34 @@ public class PlayerMovement : MonoBehaviour
 
     GameObject myCollision;
 
+    /* ContactFilter2D filter = new ContactFilter2D();
+
+    Collider2D[] otherColliders = new Collider2D[16];
+
+    int colliderPosition; */
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        /* 
+        LayerMask layerMask = (LayerMask) LayerMask.GetMask("Interactables");
+        filter.SetLayerMask (layerMask);
+        filter.useLayerMask = true;
+        filter.useTriggers = true; */
     }
 
     void Update()
     {
         Run();
         FlipSprite();
+
+        if (PlayerPrefs.GetInt("hasBell") == 1)
+        {
+            myAnimator.SetBool("hasBell", true);
+        }
+
+        //colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
     }
 
     void OnMove(InputValue value)
@@ -83,12 +99,14 @@ public class PlayerMovement : MonoBehaviour
             float turnPlayer =
                 Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
             transform.localScale = new Vector2(turnPlayer, 0.2f);
-            Debug.Log(PlayerPrefs.GetFloat("playerFacing"));
         }
     }
 
     void OnInteract(InputValue value)
     {
+        /* colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
+        Debug.Log("wat is on Position ColliderPosition");
+        Debug.Log(otherColliders[colliderPosition]); */
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Interactables")))
         {
             if (myCollision.tag == "Entrance")
@@ -99,11 +117,28 @@ public class PlayerMovement : MonoBehaviour
             {
                 myCollision.GetComponent<MomBehavior>().Interacting();
             }
+            if (myCollision.tag == "Bell")
+            {
+                myCollision.GetComponent<CollectingBell>().Interacting();
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         myCollision = other.gameObject;
+    }
+
+    void OnOpenMenu(InputValue value)
+    {
+        //SceneManager.LoadScene(0);
+        Debug.Log("QUIT!");
+        Application.Quit();
+    }
+
+    void OnResetBell(InputValue value)
+    {
+        PlayerPrefs.SetInt("hasBell", 0);
+        myAnimator.SetBool("hasBell", false);
     }
 }

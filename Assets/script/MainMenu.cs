@@ -5,10 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public float waitTime;
+
+    public Animator musicAnim;
+
     public void PlayGame()
     {
-        // for the moment start with the Home Room not with the House Room. At the moment i dont know how to interact with stuff like doors
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        StartCoroutine(ChangeScene());
+    }
+
+    IEnumerator ChangeScene()
+    {
+        musicAnim.SetTrigger("fadeOut");
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
