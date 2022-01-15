@@ -18,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     BoxCollider2D myBoxCollider;
 
+    [SerializeField]
+    GameObject Orb;
+
     Sprite sprite;
 
     Animator myAnimator;
@@ -51,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerPrefs.GetInt("hasBell") == 1)
         {
             myAnimator.SetBool("hasBell", true);
+            Orb.SetActive(true);
+        }
+        else
+        {
+            Orb.SetActive(false);
         }
 
         //colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
@@ -127,6 +135,14 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         myCollision = other.gameObject;
+    }
+
+    void OnFire(InputValue value)
+    {
+        if (PlayerPrefs.GetInt("hasBell") == 1)
+        {
+            Orb.GetComponent<BellOrb>().FireBullet();
+        }
     }
 
     void OnOpenMenu(InputValue value)

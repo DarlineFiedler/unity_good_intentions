@@ -17,7 +17,6 @@ public class CollectingBell : MonoBehaviour
     {
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            Debug.Log("collecting Bell");
             PlayerPrefs.SetInt("hasBell", 1);
             Bell.SetActive(false);
         }

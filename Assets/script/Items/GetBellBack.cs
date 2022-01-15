@@ -12,5 +12,9 @@ public class GetBellBack : MonoBehaviour
         {
             Bell.SetActive(true);
         }
+        if (PlayerPrefs.GetInt("hasBell") == 1)
+        {
+            Bell.SetActive(false);
+        }
     }
 }

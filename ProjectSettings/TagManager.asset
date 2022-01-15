@@ -8,6 +8,8 @@ TagManager:
   - Mom
   - Spikes
   - Bell
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -53,6 +55,9 @@ TagManager:
     locked: 0
   - name: playground
     uniqueID: 2396713845
+    locked: 0
+  - name: centerStage
+    uniqueID: 118594373
     locked: 0
   - name: NPC
     uniqueID: 301567837

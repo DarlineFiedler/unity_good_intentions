@@ -9,8 +9,7 @@ public class MusicTrasition : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-
+        // Debug.Log(SceneManager.GetActiveScene().buildIndex);
         if (backgroundMusic == null)
         {
             backgroundMusic = this;

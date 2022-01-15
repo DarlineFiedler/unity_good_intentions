@@ -9,6 +9,13 @@ public class MainMenu : MonoBehaviour
 
     public Animator musicAnim;
 
+    private void Start()
+    {
+        PlayerPrefs.SetFloat("maxHealth", 3f);
+        PlayerPrefs.SetFloat("currentHealth", 3f);
+        PlayerPrefs.SetFloat("damage", 1f);
+    }
+
     public void PlayGame()
     {
         StartCoroutine(ChangeScene());
