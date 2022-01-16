@@ -53,6 +53,12 @@ public class FrogBehavior : MonoBehaviour
 
     float speedy;
 
+    float health = 2f;
+
+    float playerDamage = 1f;
+
+    BoxCollider2D collider2D;
+
     void Start()
     {
         waitCountdown = timewaiting;
@@ -60,34 +66,42 @@ public class FrogBehavior : MonoBehaviour
         speedy = speed;
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        myRigidbody.isKinematic = true;
+        playerDamage = PlayerPrefs.GetFloat("damage");
+        collider2D = GetComponent<BoxCollider2D>();
+        //myRigidbody.isKinematic = true;
     }
 
     void Update()
     {
         CheckGroundAndWall();
-
-        if (waitCountdown <= 0)
+        if (health > 0)
         {
-            if (runCountdown >= 0)
+            if (waitCountdown <= 0)
             {
-                myAnimator.SetBool("isJumping", true);
-                myRigidbody.velocity = transform.right * speed;
+                if (runCountdown >= 0)
+                {
+                    myAnimator.SetBool("isJumping", true);
+                    myRigidbody.velocity = transform.right * speed;
+                }
+
+                runCountdown -= Time.deltaTime;
+
+                if (runCountdown <= 0)
+                {
+                    speedy = 0;
+                    waitCountdown = timewaiting;
+                    runCountdown = timeRunning;
+                }
             }
-
-            runCountdown -= Time.deltaTime;
-
-            if (runCountdown <= 0)
+            else
             {
-                speedy = 0;
-                waitCountdown = timewaiting;
-                runCountdown = timeRunning;
+                myAnimator.SetBool("isJumping", false);
+                waitCountdown -= Time.deltaTime;
+                myRigidbody.velocity = Vector2.zero;
             }
         }
         else
         {
-            myAnimator.SetBool("isJumping", false);
-            waitCountdown -= Time.deltaTime;
             myRigidbody.velocity = Vector2.zero;
         }
     }
@@ -133,5 +147,19 @@ public class FrogBehavior : MonoBehaviour
             .DrawLine(wallPositionChecker.position,
             new Vector2(wallPositionChecker.position.x + wallCheckDistance,
                 wallPositionChecker.position.y));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Bullet")
+        {
+            health -= playerDamage;
+            myAnimator.SetTrigger("getHurt");
+            if (health <= 0)
+            {
+                myAnimator.SetBool("isDead", true);
+                collider2D.enabled = false;
+            }
+        }
     }
 }

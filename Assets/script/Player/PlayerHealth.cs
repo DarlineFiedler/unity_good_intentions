@@ -30,6 +30,25 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            myAnimator.SetTrigger("getHurt");
+            catHeadAnimator.SetTrigger("getHurt");
+            health -= 1;
+            PlayerPrefs.SetFloat("currentHealth", health);
+
+            if (PlayerPrefs.GetFloat("currentHealth") <= 0)
+            {
+                SceneManager.LoadScene(1);
+                PlayerPrefs
+                    .SetFloat("currentHealth",
+                    PlayerPrefs.GetFloat("maxHealth"));
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Spikes")
@@ -48,6 +67,22 @@ public class PlayerHealth : MonoBehaviour
             }
         }
         if (other.tag == "Enemy")
+        {
+            myAnimator.SetTrigger("getHurt");
+            catHeadAnimator.SetTrigger("getHurt");
+            health -= 1;
+            PlayerPrefs.SetFloat("currentHealth", health);
+
+            if (PlayerPrefs.GetFloat("currentHealth") <= 0)
+            {
+                SceneManager.LoadScene(1);
+                PlayerPrefs
+                    .SetFloat("currentHealth",
+                    PlayerPrefs.GetFloat("maxHealth"));
+            }
+        }
+
+        if (other.tag == "Boss")
         {
             myAnimator.SetTrigger("getHurt");
             catHeadAnimator.SetTrigger("getHurt");

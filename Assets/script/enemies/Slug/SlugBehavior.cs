@@ -37,9 +37,20 @@ public class SlugBehavior : MonoBehaviour
 
     float ZAxisAdd;
 
+    float health = 1f;
+
+    float playerDamage = 1f;
+
+    Animator myAnimator;
+
+    BoxCollider2D collider2D;
+
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        playerDamage = PlayerPrefs.GetFloat("damage");
+        myAnimator = GetComponent<Animator>();
+        collider2D = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -54,7 +65,14 @@ public class SlugBehavior : MonoBehaviour
 
     void Movement()
     {
-        myRigidbody.velocity = transform.right * speed;
+        if (health > 0)
+        {
+            myRigidbody.velocity = transform.right * speed;
+        }
+        else
+        {
+            myRigidbody.velocity = Vector2.zero;
+        }
     }
 
     void CheckGroundAndWall()
@@ -98,5 +116,19 @@ public class SlugBehavior : MonoBehaviour
             .DrawLine(wallPositionChecker.position,
             new Vector2(wallPositionChecker.position.x + wallCheckDistance,
                 wallPositionChecker.position.y));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Bullet")
+        {
+            health -= playerDamage;
+            myAnimator.SetTrigger("getHurt");
+            if (health <= 0)
+            {
+                myAnimator.SetBool("isDead", true);
+                collider2D.enabled = false;
+            }
+        }
     }
 }

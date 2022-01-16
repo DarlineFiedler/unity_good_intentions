@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("maxHealth", 3f);
         PlayerPrefs.SetFloat("currentHealth", 3f);
         PlayerPrefs.SetFloat("damage", 1f);
+        PlayerPrefs.SetInt("hasBell", 0);
     }
 
     public void PlayGame()

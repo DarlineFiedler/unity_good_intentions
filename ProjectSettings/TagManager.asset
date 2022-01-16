@@ -10,6 +10,7 @@ TagManager:
   - Bell
   - Bullet
   - Enemy
+  - Bro
   layers:
   - Default
   - TransparentFX

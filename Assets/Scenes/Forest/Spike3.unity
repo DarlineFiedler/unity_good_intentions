@@ -1104,9 +1104,9 @@ GameObject:
   - component: {fileID: 1145505879}
   - component: {fileID: 1145505881}
   - component: {fileID: 1145505880}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spike
-  m_TagString: Untagged
+  m_TagString: Spikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1731,7 +1731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705823871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.024308, y: -22.080847, z: 67.546005}
+  m_LocalPosition: {x: -15.013706, y: -22.080847, z: 67.546005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

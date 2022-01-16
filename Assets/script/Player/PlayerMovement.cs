@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     GameObject Orb;
 
+    [SerializeField]
+    GameObject BellOrb;
+
     Sprite sprite;
 
     Animator myAnimator;
@@ -55,10 +58,12 @@ public class PlayerMovement : MonoBehaviour
         {
             myAnimator.SetBool("hasBell", true);
             Orb.SetActive(true);
+            BellOrb.SetActive(true);
         }
         else
         {
             Orb.SetActive(false);
+            BellOrb.SetActive(false);
         }
 
         //colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
@@ -124,6 +129,10 @@ public class PlayerMovement : MonoBehaviour
             if (myCollision.tag == "Mom")
             {
                 myCollision.GetComponent<MomBehavior>().Interacting();
+            }
+            if (myCollision.tag == "Bro")
+            {
+                myCollision.GetComponent<BroBehavior>().Interacting();
             }
             if (myCollision.tag == "Bell")
             {

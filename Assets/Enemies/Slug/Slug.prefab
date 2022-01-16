@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 5470289957307765442}
   - component: {fileID: 3819857344721300740}
   - component: {fileID: 4689000282923122054}
-  - component: {fileID: 2689251502399388769}
   m_Layer: 0
   m_Name: Slug
   m_TagString: Enemy
@@ -245,15 +244,3 @@ MonoBehaviour:
   whatIsWall:
     serializedVersion: 2
     m_Bits: 2048
---- !u!114 &2689251502399388769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381078992528104259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c853a026843d0479c5ab1588eaa912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
