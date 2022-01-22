@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        PlayerPrefs.SetInt("isTalking", 0);
         /* 
         LayerMask layerMask = (LayerMask) LayerMask.GetMask("Interactables");
         filter.SetLayerMask (layerMask);
@@ -81,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
-            PlayerPrefs.GetInt("isHealing") == 0
+            PlayerPrefs.GetInt("isHealing") == 0 &&
+            PlayerPrefs.GetInt("isTalking") == 0
         )
         {
             moveInput = value.Get<Vector2>();
@@ -92,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
-            PlayerPrefs.GetInt("isHealing") == 0
+            PlayerPrefs.GetInt("isHealing") == 0 &&
+            PlayerPrefs.GetInt("isTalking") == 0
         )
         {
             if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -112,7 +115,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
-            PlayerPrefs.GetInt("isHealing") == 0
+            PlayerPrefs.GetInt("isHealing") == 0 &&
+            PlayerPrefs.GetInt("isTalking") == 0
         )
         {
             Vector2 placerVelocity =
@@ -148,9 +152,19 @@ public class PlayerMovement : MonoBehaviour
 
     void OnInteract(InputValue value)
     {
+        bool playerHasHorizontalSpeed =
+            Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
+        if (
+            !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) ||
+            playerHasHorizontalSpeed
+        )
+        {
+            return;
+        }
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
-            PlayerPrefs.GetInt("isHealing") == 0
+            PlayerPrefs.GetInt("isHealing") == 0 &&
+            PlayerPrefs.GetInt("isTalking") == 0
         )
         {
             /* colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
@@ -167,7 +181,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (myCollision.tag == "Mom")
                 {
-                    myCollision.GetComponent<MomBehavior>().Interacting();
+                    myCollision
+                        .GetComponent<MomBehavior>()
+                        .Interacting(value.isPressed);
                 }
                 if (myCollision.tag == "Bro")
                 {
@@ -194,7 +210,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
-            PlayerPrefs.GetInt("isHealing") == 0
+            PlayerPrefs.GetInt("isHealing") == 0 &&
+            PlayerPrefs.GetInt("isTalking") == 0
         )
         {
             if (PlayerPrefs.GetInt("hasBell") == 1)
@@ -215,6 +232,14 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerPrefs.SetInt("hasBell", 0);
         myAnimator.SetBool("hasBell", false);
+        PlayerPrefs.SetInt("everTalkToMom", 0);
+        PlayerPrefs.SetInt("ignoreMom", 0);
+        PlayerPrefs.SetInt("talkedToMomAfterBell", 0);
+        PlayerPrefs.SetInt("everTalkToBro", 0);
+        PlayerPrefs.SetInt("talkedToBroAfterBell", 0);
+        PlayerPrefs.SetInt("leaveTreeOnceAfterTalkedToBro", 0);
+        PlayerPrefs.SetInt("canHeal", 0);
+        PlayerPrefs.SetInt("isTalking", 0);
     }
 
     void OnResetBB(InputValue value)

@@ -15,6 +15,7 @@ TagManager:
   - Falling
   - test
   - BB
+  - leftBarrier
   layers:
   - Default
   - TransparentFX

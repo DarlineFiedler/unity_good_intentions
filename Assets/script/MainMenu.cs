@@ -23,8 +23,22 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("maxHealth", 3f);
         PlayerPrefs.SetFloat("currentHealth", 3f);
         PlayerPrefs.SetFloat("damage", 1f);
-        PlayerPrefs.SetInt("hasBell", 0);
         PlayerPrefs.SetInt("hasBB", 0);
+        PlayerPrefs.SetInt("isHealing", 0);
+        PlayerPrefs.SetInt("foundBB", 0);
+        PlayerPrefs.SetInt("isTalking", 0);
+
+        // need for Talking
+        PlayerPrefs.SetInt("everTalkToMom", 0);
+        PlayerPrefs.SetInt("ignoreMom", 0);
+        PlayerPrefs.SetInt("talkedToMomAfterBell", 0);
+        PlayerPrefs.SetInt("everTalkToBro", 0);
+        PlayerPrefs.SetInt("talkedToBroAfterBell", 0);
+        PlayerPrefs.SetInt("leaveTreeOnceAfterTalkedToBro", 0);
+
+        // set skills
+        PlayerPrefs.SetInt("hasBell", 0);
+        PlayerPrefs.SetInt("canHeal", 0);
     }
 
     public void HideMenu()

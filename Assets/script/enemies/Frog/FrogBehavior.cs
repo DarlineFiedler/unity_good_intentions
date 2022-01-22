@@ -57,7 +57,7 @@ public class FrogBehavior : MonoBehaviour
 
     float playerDamage = 1f;
 
-    BoxCollider2D collider2D;
+    BoxCollider2D frogCollider;
 
     void Start()
     {
@@ -67,7 +67,7 @@ public class FrogBehavior : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         playerDamage = PlayerPrefs.GetFloat("damage");
-        collider2D = GetComponent<BoxCollider2D>();
+        frogCollider = GetComponent<BoxCollider2D>();
         //myRigidbody.isKinematic = true;
     }
 
@@ -158,7 +158,7 @@ public class FrogBehavior : MonoBehaviour
             if (health <= 0)
             {
                 myAnimator.SetBool("isDead", true);
-                collider2D.enabled = false;
+                frogCollider.enabled = false;
             }
         }
     }

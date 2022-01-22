@@ -24,7 +24,7 @@ public class SquidBehavior : MonoBehaviour
 
     float playerDamage = 1f;
 
-    CapsuleCollider2D collider2D;
+    CapsuleCollider2D squidCollider;
 
     Animator myAnimator;
 
@@ -37,7 +37,7 @@ public class SquidBehavior : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
         playerDamage = PlayerPrefs.GetFloat("damage");
-        collider2D = GetComponent<CapsuleCollider2D>();
+        squidCollider = GetComponent<CapsuleCollider2D>();
         seeker = GetComponent<Seeker>();
         myRigidbody = GetComponent<Rigidbody2D>();
 
@@ -122,7 +122,7 @@ public class SquidBehavior : MonoBehaviour
             {
                 myAnimator.SetBool("isDead", true);
                 myRigidbody.gravityScale = 0.3f;
-                collider2D.enabled = false;
+                squidCollider.enabled = false;
                 speed = 0f;
                 isDead = true;
             }
