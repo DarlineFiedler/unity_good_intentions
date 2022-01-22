@@ -7,6 +7,14 @@ TagManager:
   - Entrance
   - Mom
   - Spikes
+  - Bell
+  - Bullet
+  - Enemy
+  - Bro
+  - Ground
+  - Falling
+  - test
+  - BB
   layers:
   - Default
   - TransparentFX
@@ -21,7 +29,7 @@ TagManager:
   - Bounching
   - Wall
   - Spikes
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -50,11 +58,20 @@ TagManager:
   - name: background2
     uniqueID: 449524349
     locked: 0
+  - name: squid
+    uniqueID: 1423247555
+    locked: 0
   - name: playground
     uniqueID: 2396713845
     locked: 0
+  - name: centerStage
+    uniqueID: 118594373
+    locked: 0
   - name: NPC
     uniqueID: 301567837
+    locked: 0
+  - name: enemies
+    uniqueID: 1587546865
     locked: 0
   - name: player
     uniqueID: 2099196309

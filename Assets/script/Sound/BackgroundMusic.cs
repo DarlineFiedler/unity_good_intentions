@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    private static BackgroundMusic backgroundMusic;
-
     void Start()
     {
         // check if Volume was set in previous game session
@@ -28,19 +26,6 @@ public class BackgroundMusic : MonoBehaviour
         else
         {
             AudioListener.pause = PlayerPrefs.GetInt("musicMuted") == 1;
-        }
-    }
-
-    private void Awake()
-    {
-        if (backgroundMusic == null)
-        {
-            backgroundMusic = this;
-            DontDestroyOnLoad (backgroundMusic);
-        }
-        else
-        {
-            Destroy (gameObject);
         }
     }
 }
