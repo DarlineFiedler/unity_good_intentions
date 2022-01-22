@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    float timewaiting = 0.7f;
+    [SerializeField]
+    float timewaiting = 0.9f;
 
     float waitCountdown;
 

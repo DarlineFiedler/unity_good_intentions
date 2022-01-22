@@ -11,6 +11,10 @@ TagManager:
   - Bullet
   - Enemy
   - Bro
+  - Ground
+  - Falling
+  - test
+  - BB
   layers:
   - Default
   - TransparentFX
@@ -53,6 +57,9 @@ TagManager:
     locked: 0
   - name: background2
     uniqueID: 449524349
+    locked: 0
+  - name: squid
+    uniqueID: 1423247555
     locked: 0
   - name: playground
     uniqueID: 2396713845

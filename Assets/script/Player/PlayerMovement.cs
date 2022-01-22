@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     GameObject BellOrb;
 
+    [SerializeField]
+    GameObject BB;
+
     Sprite sprite;
 
     Animator myAnimator;
@@ -65,39 +68,67 @@ public class PlayerMovement : MonoBehaviour
             Orb.SetActive(false);
             BellOrb.SetActive(false);
         }
+        if (PlayerPrefs.GetInt("hasBB") == 1)
+        {
+            myAnimator.SetBool("hasBB", true);
+        }
 
         //colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
+        //
     }
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        if (
+            PlayerPrefs.GetFloat("currentHealth") > 0 &&
+            PlayerPrefs.GetInt("isHealing") == 0
+        )
+        {
+            moveInput = value.Get<Vector2>();
+        }
     }
 
     void OnJump(InputValue value)
     {
-        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (
+            PlayerPrefs.GetFloat("currentHealth") > 0 &&
+            PlayerPrefs.GetInt("isHealing") == 0
+        )
         {
-            return;
-        }
-        if (value.isPressed)
-        {
-            myAnimator.SetTrigger("isJumping");
-            myRigidbody.velocity +=
-                new Vector2(myRigidbody.velocity.x, jumpSpeed);
+            if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+                return;
+            }
+            if (value.isPressed)
+            {
+                myAnimator.SetTrigger("isJumping");
+                myRigidbody.velocity +=
+                    new Vector2(myRigidbody.velocity.x, jumpSpeed);
+            }
         }
     }
 
     void Run()
     {
-        Vector2 placerVelocity =
-            new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
-        myRigidbody.velocity = placerVelocity;
+        if (
+            PlayerPrefs.GetFloat("currentHealth") > 0 &&
+            PlayerPrefs.GetInt("isHealing") == 0
+        )
+        {
+            Vector2 placerVelocity =
+                new Vector2(moveInput.x * runSpeed, myRigidbody.velocity.y);
+            myRigidbody.velocity = placerVelocity;
 
-        bool playerHasHorizontalSpeed =
-            Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
+            bool playerHasHorizontalSpeed =
+                Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
 
-        myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+            myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+        }
+        else
+        {
+            Vector2 placerVelocity = new Vector2(0f, myRigidbody.velocity.y);
+            myRigidbody.velocity = placerVelocity;
+        }
     }
 
     void FlipSprite()
@@ -117,26 +148,39 @@ public class PlayerMovement : MonoBehaviour
 
     void OnInteract(InputValue value)
     {
-        /* colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
+        if (
+            PlayerPrefs.GetFloat("currentHealth") > 0 &&
+            PlayerPrefs.GetInt("isHealing") == 0
+        )
+        {
+            /* colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
         Debug.Log("wat is on Position ColliderPosition");
         Debug.Log(otherColliders[colliderPosition]); */
-        if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Interactables")))
-        {
-            if (myCollision.tag == "Entrance")
+            if (
+                myBoxCollider
+                    .IsTouchingLayers(LayerMask.GetMask("Interactables"))
+            )
             {
-                myCollision.GetComponent<LevelEntrance>().Interacting();
-            }
-            if (myCollision.tag == "Mom")
-            {
-                myCollision.GetComponent<MomBehavior>().Interacting();
-            }
-            if (myCollision.tag == "Bro")
-            {
-                myCollision.GetComponent<BroBehavior>().Interacting();
-            }
-            if (myCollision.tag == "Bell")
-            {
-                myCollision.GetComponent<CollectingBell>().Interacting();
+                if (myCollision.tag == "Entrance")
+                {
+                    myCollision.GetComponent<LevelEntrance>().Interacting();
+                }
+                if (myCollision.tag == "Mom")
+                {
+                    myCollision.GetComponent<MomBehavior>().Interacting();
+                }
+                if (myCollision.tag == "Bro")
+                {
+                    myCollision.GetComponent<BroBehavior>().Interacting();
+                }
+                if (myCollision.tag == "Bell")
+                {
+                    myCollision.GetComponent<CollectingBell>().Interacting();
+                }
+                if (myCollision.tag == "BB")
+                {
+                    myCollision.GetComponent<BbBehavior>().Interacting();
+                }
             }
         }
     }
@@ -148,9 +192,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnFire(InputValue value)
     {
-        if (PlayerPrefs.GetInt("hasBell") == 1)
+        if (
+            PlayerPrefs.GetFloat("currentHealth") > 0 &&
+            PlayerPrefs.GetInt("isHealing") == 0
+        )
         {
-            Orb.GetComponent<BellOrb>().FireBullet();
+            if (PlayerPrefs.GetInt("hasBell") == 1)
+            {
+                Orb.GetComponent<BellOrb>().FireBullet();
+            }
         }
     }
 
@@ -165,5 +215,11 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerPrefs.SetInt("hasBell", 0);
         myAnimator.SetBool("hasBell", false);
+    }
+
+    void OnResetBB(InputValue value)
+    {
+        PlayerPrefs.SetInt("hasBB", 0);
+        myAnimator.SetBool("hasBB", false);
     }
 }

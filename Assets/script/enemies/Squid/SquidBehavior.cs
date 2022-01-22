@@ -18,7 +18,7 @@ public class SquidBehavior : MonoBehaviour
     // bool reachedEndOfPath = false;
     Seeker seeker;
 
-    Rigidbody2D rb;
+    Rigidbody2D myRigidbody;
 
     float health = 2f;
 
@@ -28,6 +28,10 @@ public class SquidBehavior : MonoBehaviour
 
     Animator myAnimator;
 
+    float waitCountdown = 3f;
+
+    bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +39,7 @@ public class SquidBehavior : MonoBehaviour
         playerDamage = PlayerPrefs.GetFloat("damage");
         collider2D = GetComponent<CapsuleCollider2D>();
         seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
+        myRigidbody = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
@@ -44,7 +48,10 @@ public class SquidBehavior : MonoBehaviour
     {
         if (seeker.IsDone())
         {
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
+            seeker
+                .StartPath(myRigidbody.position,
+                target.position,
+                OnPathComplete);
         }
     }
 
@@ -72,19 +79,36 @@ public class SquidBehavior : MonoBehaviour
         }
 
         Vector2 direction =
-            ((Vector2) path.vectorPath[currentWaypoint] - rb.position)
+            ((Vector2) path.vectorPath[currentWaypoint] - myRigidbody.position)
                 .normalized;
 
         Vector2 force = direction * speed * Time.deltaTime;
 
-        rb.AddForce (force);
+        myRigidbody.AddForce (force);
 
         float distance =
-            Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+            Vector2
+                .Distance(myRigidbody.position,
+                path.vectorPath[currentWaypoint]);
 
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
+        }
+    }
+
+    void Update()
+    {
+        if (isDead)
+        {
+            if (waitCountdown <= 0)
+            {
+                Destroy (gameObject);
+            }
+            else
+            {
+                waitCountdown -= Time.deltaTime;
+            }
         }
     }
 
@@ -97,8 +121,10 @@ public class SquidBehavior : MonoBehaviour
             if (health <= 0)
             {
                 myAnimator.SetBool("isDead", true);
+                myRigidbody.gravityScale = 0.3f;
                 collider2D.enabled = false;
                 speed = 0f;
+                isDead = true;
             }
         }
     }

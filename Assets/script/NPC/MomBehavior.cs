@@ -8,6 +8,8 @@ public class MomBehavior : MonoBehaviour
 
     Animator myAnimator;
 
+    public GameObject Text;
+
     void Start()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
@@ -28,6 +30,15 @@ public class MomBehavior : MonoBehaviour
         if (other.tag == "Player")
         {
             myAnimator.SetBool("isTalking", false);
+            Text.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Text.SetActive(true);
         }
     }
 }

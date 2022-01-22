@@ -8,6 +8,8 @@ public class CollectingBell : MonoBehaviour
 
     public GameObject Bell;
 
+    public GameObject Text;
+
     void Start()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
@@ -19,6 +21,22 @@ public class CollectingBell : MonoBehaviour
         {
             PlayerPrefs.SetInt("hasBell", 1);
             Bell.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Text.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Text.SetActive(false);
         }
     }
 }

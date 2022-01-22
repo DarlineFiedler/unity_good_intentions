@@ -78,13 +78,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "test",
-                    "type": "Value",
-                    "id": "2ed8ac85-b310-4a13-bd31-3be9df97c369",
-                    "expectedControlType": "Vector2",
+                    "name": "ResetBB",
+                    "type": "Button",
+                    "id": "e946b2fc-f4c8-456a-890d-6d2f263d369a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -398,23 +398,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4cd479ed-ce16-45ef-84a1-846e84a80863",
-                    "path": "<Mouse>/position",
+                    "id": "e7f0673f-d73e-426d-9824-9899a35ed1a4",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "test",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "add9e1a2-11ff-48cc-b8d6-7040442e1adf",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "test",
+                    "action": "ResetBB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

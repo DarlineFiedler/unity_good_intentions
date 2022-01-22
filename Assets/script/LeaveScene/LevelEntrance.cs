@@ -14,6 +14,8 @@ public class LevelEntrance : MonoBehaviour
     [SerializeField]
     float levelLoadDelay = 0.2f;
 
+    public GameObject Text;
+
     void Start()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
@@ -37,5 +39,21 @@ public class LevelEntrance : MonoBehaviour
 
         // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene (nextSceneIndex);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Text.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Text.SetActive(false);
+        }
     }
 }
