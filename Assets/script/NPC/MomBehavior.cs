@@ -28,6 +28,12 @@ public class MomBehavior : MonoBehaviour
     string[] talkAgainAfterBell;
 
     [SerializeField]
+    string[] triggerLeftBarrier;
+
+    [SerializeField]
+    string[] triggerRightBarrier;
+
+    [SerializeField]
     string[] lines;
 
     [SerializeField]
@@ -59,8 +65,9 @@ public class MomBehavior : MonoBehaviour
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+
         PlayerPrefs.SetInt("isTalking", 0);
-        if (PlayerPrefs.GetInt("everTalkToMom") == 1)
+        /*  if (PlayerPrefs.GetInt("everTalkToMom") == 1)
         {
             leftBarrier.enabled = false;
         }
@@ -75,14 +82,17 @@ public class MomBehavior : MonoBehaviour
         else
         {
             rightBarrier.enabled = true;
-        }
+        } */
     }
 
     private void Update()
     {
+        Debug.Log("Update mum");
+        Debug.Log (isTalking);
         getText();
         if (Input.GetKeyDown(KeyCode.Space) && isTalking)
         {
+            Debug.Log("press space");
             if (textComponent.text == lines[index])
             {
                 NextLine();
@@ -95,8 +105,9 @@ public class MomBehavior : MonoBehaviour
         }
     }
 
-    public void Interacting(bool value)
+    public void Interacting(string trigger)
     {
+        Debug.Log("fiere this function");
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
             textComponent.text = string.Empty;
@@ -105,6 +116,16 @@ public class MomBehavior : MonoBehaviour
             StartDialogue();
 
             // Debug.Log("Hello Honey! How are U?");
+        }
+
+        if (trigger == "leftBarrier")
+        {
+            Debug.Log("fiere from barrarier trigger");
+            Array.Copy(triggerLeftBarrier, lines, 4);
+            textComponent.text = string.Empty;
+            textSpeaker.text = speaker;
+            DialogeBox.SetActive(true);
+            StartDialogue();
         }
     }
 
@@ -126,11 +147,11 @@ public class MomBehavior : MonoBehaviour
 
     void StartDialogue()
     {
-        index = 0;
-        StartCoroutine(TypeLine());
         isTalking = true;
         PlayerPrefs.SetInt("isTalking", 1);
         myAnimator.SetBool("isTalking", true);
+        index = 0;
+        StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
@@ -156,6 +177,7 @@ public class MomBehavior : MonoBehaviour
             else
             {
                 DialogeBox.SetActive(false);
+
                 if (
                     PlayerPrefs.GetInt("ignoreMom") == 1 ||
                     PlayerPrefs.GetInt("ignoreMom") == 0

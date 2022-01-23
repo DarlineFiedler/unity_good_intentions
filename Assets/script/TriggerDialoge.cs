@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class TriggerDialoge : MonoBehaviour
 {
-    [SerializeField]
+    /*  [SerializeField]
     Animator speakerAnimator;
 
     [SerializeField]
     TextMeshProUGUI textComponent;
 
     [SerializeField]
-    TextMeshProUGUI textSpeaker;
+    TextMeshProUGUI textSpeaker; */
+    [SerializeField]
+    GameObject Mom;
 
     [SerializeField]
-    GameObject DialogeBox;
+    /*   GameObject DialogeBox;
 
     [SerializeField]
     string speaker;
@@ -29,18 +31,17 @@ public class TriggerDialoge : MonoBehaviour
     bool isTalking = false;
 
     private int index;
-
+ */
     // Start is called before the first frame update
-    void Start()
+    /*   void Start()
     {
-        textComponent.text = string.Empty;
+         textComponent.text = string.Empty;
         textSpeaker.text = speaker;
-        StartDialogue();
-        PlayerPrefs.SetInt("isTalking", 0);
-    }
-
+        StartDialogue(); 
+     PlayerPrefs.SetInt("isTalking", 0);
+    } */
     // Update is called once per frame
-    void Update()
+    /*  void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && isTalking)
         {
@@ -54,20 +55,23 @@ public class TriggerDialoge : MonoBehaviour
                 textComponent.text = lines[index];
             }
         }
-    }
-
+    } */
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("trigger collison ");
         if (other.gameObject.tag == "Player")
         {
-            textComponent.text = string.Empty;
+            Mom.GetComponent<MomBehavior>().Interacting("leftBarrier");
+
+            Debug.Log("trigger collison with player");
+            /* textComponent.text = string.Empty;
             textSpeaker.text = speaker;
             DialogeBox.SetActive(true);
-            StartDialogue();
+            StartDialogue(); */
         }
     }
 
-    void StartDialogue()
+    /*     void StartDialogue()
     {
         index = 0;
         StartCoroutine(TypeLine());
@@ -105,5 +109,5 @@ public class TriggerDialoge : MonoBehaviour
                 PlayerPrefs.SetInt("ignoreMom", 1);
             }
         }
-    }
+    } */
 }

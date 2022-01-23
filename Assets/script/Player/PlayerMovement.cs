@@ -57,7 +57,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Run();
         FlipSprite();
-
+        Debug.Log("player");
+        Debug.Log(PlayerPrefs.GetFloat("currentHealth"));
+        Debug.Log(PlayerPrefs.GetInt("isHealing"));
+        Debug.Log(PlayerPrefs.GetInt("isTalking"));
+        Debug.Log("player end");
         if (PlayerPrefs.GetInt("hasBell") == 1)
         {
             myAnimator.SetBool("hasBell", true);
@@ -183,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     myCollision
                         .GetComponent<MomBehavior>()
-                        .Interacting(value.isPressed);
+                        .Interacting("player");
                 }
                 if (myCollision.tag == "Bro")
                 {
