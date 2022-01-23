@@ -60,7 +60,8 @@ public class MomBehavior : MonoBehaviour
     BoxCollider2D rightBarrier;
 
     bool isTalking = false;
-    bool  talkingBecauseOfTrigger = false;
+
+    bool talkingBecauseOfTrigger = false;
 
     void Start()
     {
@@ -68,7 +69,29 @@ public class MomBehavior : MonoBehaviour
         myAnimator = GetComponent<Animator>();
 
         PlayerPrefs.SetInt("isTalking", 0);
-         if (PlayerPrefs.GetInt("everTalkToMom") == 1)
+    }
+
+    private void Update()
+    {
+        if (!talkingBecauseOfTrigger)
+        {
+            getText();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isTalking)
+        {
+            if (textComponent.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
+        }
+
+        if (PlayerPrefs.GetInt("everTalkToMom") == 1)
         {
             leftBarrier.enabled = false;
         }
@@ -83,48 +106,33 @@ public class MomBehavior : MonoBehaviour
         else
         {
             rightBarrier.enabled = true;
-        } 
-    }
-
-    private void Update()
-    {
-       if(!talkingBecauseOfTrigger) {
-        getText();   
-       }
-        
-        if (Input.GetKeyDown(KeyCode.Space) && isTalking)
-        {
-            Debug.Log("press space");
-            if (textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
         }
     }
 
     public void Interacting(string trigger)
     {
-        Debug.Log("fiere this function");
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
             textComponent.text = string.Empty;
             textSpeaker.text = speaker;
             DialogeBox.SetActive(true);
             StartDialogue();
-
-            // Debug.Log("Hello Honey! How are U?");
         }
 
         if (trigger == "leftBarrier")
         {
             talkingBecauseOfTrigger = true;
-            Debug.Log("fiere from barrarier trigger");
             Array.Copy(triggerLeftBarrier, lines, 4);
+            textComponent.text = string.Empty;
+            textSpeaker.text = speaker;
+            DialogeBox.SetActive(true);
+            StartDialogue();
+        }
+
+        if (trigger == "rightBarrier")
+        {
+            talkingBecauseOfTrigger = true;
+            Array.Copy(triggerRightBarrier, lines, 4);
             textComponent.text = string.Empty;
             textSpeaker.text = speaker;
             DialogeBox.SetActive(true);
@@ -180,10 +188,16 @@ public class MomBehavior : MonoBehaviour
             else
             {
                 DialogeBox.SetActive(false);
+                if (talkingBecauseOfTrigger)
+                {
+                    PlayerPrefs.SetInt("ignoreMom", 1);
+                }
 
                 if (
-                   ( PlayerPrefs.GetInt("ignoreMom") == 1 ||
-                    PlayerPrefs.GetInt("ignoreMom") == 0 )&&
+                    (
+                    PlayerPrefs.GetInt("ignoreMom") == 1 ||
+                    PlayerPrefs.GetInt("ignoreMom") == 0
+                    ) &&
                     !talkingBecauseOfTrigger
                 )
                 {
@@ -208,13 +222,15 @@ public class MomBehavior : MonoBehaviour
         else
         {
             DialogeBox.SetActive(false);
-            if(talkingBecauseOfTrigger) {
-                Debug.Log("welp");
-             PlayerPrefs.SetInt("ignoreMom", 1);   
+            if (talkingBecauseOfTrigger)
+            {
+                PlayerPrefs.SetInt("ignoreMom", 1);
             }
             if (
-               ( PlayerPrefs.GetInt("ignoreMom") == 1 ||
-                PlayerPrefs.GetInt("ignoreMom") == 0) && 
+                (
+                PlayerPrefs.GetInt("ignoreMom") == 1 ||
+                PlayerPrefs.GetInt("ignoreMom") == 0
+                ) &&
                 !talkingBecauseOfTrigger
             )
             {

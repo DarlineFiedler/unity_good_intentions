@@ -1060,6 +1060,33 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8498409142827135428, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
   m_PrefabInstance: {fileID: 646790709}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &646790711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1798289142, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+  m_PrefabInstance: {fileID: 646790709}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &646790712 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 541916163, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+  m_PrefabInstance: {fileID: 646790709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &646790713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1596373232, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+  m_PrefabInstance: {fileID: 646790709}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &781798559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2395,9 +2422,9 @@ GameObject:
   - component: {fileID: 1860556095}
   - component: {fileID: 1860556094}
   - component: {fileID: 1860556093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Robbenraupe
-  m_TagString: Untagged
+  m_TagString: Robbenraupe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2411,10 +2438,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1860556092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 160e1136fb24c01439922b5270e163f9, type: 3}
+  m_Script: {fileID: 11500000, guid: aaddf945c8dd77746a2bced69c50ce81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 1857910935}
+  textComponent: {fileID: 646790713}
+  textSpeaker: {fileID: 646790712}
+  DialogeBox: {fileID: 646790711}
+  speaker: Robben
+  lines:
+  - 'Mmmmh. '
+  - 'Mmmmh. '
+  - 'Oh.  Hello there young lady. '
+  - 'I am sorry, I was in my head thinking. '
+  - 'Your younger brother is lost? Oh, that sounds dreadful. Sadly I haven''t seen
+    or heard somebody pass by. But don''t take my word, I sometimes get a bit distracted. '
+  - 'Be careful, going down seems to be a one way ticket. There must be another way
+    up somehow. I wish you the best of luck on your travel my friend. May the light
+    be with you. '
+  - Mmmmh.
+  textSpeed: 0.05
 --- !u!61 &1860556094
 BoxCollider2D:
   m_ObjectHideFlags: 0

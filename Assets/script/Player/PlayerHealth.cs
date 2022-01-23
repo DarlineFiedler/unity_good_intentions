@@ -91,7 +91,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (
             !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) ||
-            playerHasHorizontalSpeed
+            playerHasHorizontalSpeed ||
+            PlayerPrefs.GetInt("canHeal") == 0
         )
         {
             return;
@@ -122,6 +123,14 @@ public class PlayerHealth : MonoBehaviour
             PlayerPrefs.SetFloat("currentHealth", health);
         }
         if (other.gameObject.tag == "Falling")
+        {
+            myAnimator.SetTrigger("getHurt");
+            catHeadAnimator.SetTrigger("getHurt");
+            health -= 1;
+            PlayerPrefs.SetFloat("currentHealth", health);
+        }
+
+        if (other.gameObject.tag == "Boss")
         {
             myAnimator.SetTrigger("getHurt");
             catHeadAnimator.SetTrigger("getHurt");

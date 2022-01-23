@@ -16,6 +16,8 @@ TagManager:
   - test
   - BB
   - leftBarrier
+  - Boss
+  - Robbenraupe
   layers:
   - Default
   - TransparentFX

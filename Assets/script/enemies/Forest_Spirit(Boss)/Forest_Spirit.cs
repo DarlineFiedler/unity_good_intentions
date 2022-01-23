@@ -8,6 +8,9 @@ public class Forest_Spirit : MonoBehaviour
 
     public bool isFlipped = false;
 
+    [SerializeField]
+    BoxCollider2D attackBox;
+
     public void LookAtPlayer()
     {
         Vector3 flipped = transform.localScale;
@@ -25,5 +28,15 @@ public class Forest_Spirit : MonoBehaviour
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
         }
+    }
+
+    public void AttackPlayer()
+    {
+        attackBox.enabled = true;
+    }
+
+    public void AttackOver()
+    {
+        attackBox.enabled = false;
     }
 }
