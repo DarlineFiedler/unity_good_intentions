@@ -29,8 +29,7 @@ public class hitSpikes : MonoBehaviour
             {
                 yield return new WaitForSecondsRealtime(levelLoadDelay);
                 player.localScale =
-                    new Vector2(PlayerPrefs.GetFloat("playerFacing", 0.2f),
-                        0.2f);
+                    new Vector2(PlayerPrefs.GetFloat("playerFacing", 1f), 1f);
                 player.position = resetPoints[i].position;
             }
         }

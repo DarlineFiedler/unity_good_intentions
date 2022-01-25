@@ -143,10 +143,10 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerPrefs
                 .SetFloat("playerFacing",
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 1f : -1f);
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.2f : -0.2f;
-            transform.localScale = new Vector2(turnPlayer, 0.2f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 1f : -1f;
+            transform.localScale = new Vector2(turnPlayer, 1f);
         }
     }
 
@@ -244,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("leaveTreeOnceAfterTalkedToBro", 0);
         PlayerPrefs.SetInt("canHeal", 0);
         PlayerPrefs.SetInt("isTalking", 0);
+        PlayerPrefs.SetInt("everTalkedToRobben", 0);
     }
 
     void OnResetBB(InputValue value)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -24,6 +25,12 @@ public class RobbenBehavior : MonoBehaviour
     string speaker;
 
     [SerializeField]
+    string[] firstTalk;
+
+    [SerializeField]
+    string[] talkAgain;
+
+    [SerializeField]
     string[] lines;
 
     [SerializeField]
@@ -37,14 +44,13 @@ public class RobbenBehavior : MonoBehaviour
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
-        textComponent.text = string.Empty;
-        textSpeaker.text = speaker;
-        StartDialogue();
+
         PlayerPrefs.SetInt("isTalking", 0);
     }
 
     void Update()
     {
+        getText();
         if (Input.GetKeyDown(KeyCode.Space) && isTalking)
         {
             if (textComponent.text == lines[index])
@@ -91,6 +97,7 @@ public class RobbenBehavior : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
+        myAnimator.SetBool("isTalking", true);
         isTalking = true;
         PlayerPrefs.SetInt("isTalking", 1);
     }
@@ -109,16 +116,40 @@ public class RobbenBehavior : MonoBehaviour
     {
         if (index < lines.Length - 1)
         {
-            index++;
-            textComponent.text = string.Empty;
-            StartCoroutine(TypeLine());
+            if (lines[index + 1] != "")
+            {
+                index++;
+                textComponent.text = string.Empty;
+                StartCoroutine(TypeLine());
+            }
+            else
+            {
+                PlayerPrefs.SetInt("everTalkedToRobben", 1);
+                myAnimator.SetBool("isTalking", false);
+                DialogeBox.SetActive(false);
+                isTalking = false;
+                PlayerPrefs.SetInt("isTalking", 0);
+            }
         }
         else
         {
+            PlayerPrefs.SetInt("everTalkedToRobben", 1);
             myAnimator.SetBool("isTalking", false);
             DialogeBox.SetActive(false);
             isTalking = false;
             PlayerPrefs.SetInt("isTalking", 0);
+        }
+    }
+
+    void getText()
+    {
+        if (PlayerPrefs.GetInt("everTalkedToRobben") == 1)
+        {
+            talkAgain.CopyTo(lines, 0);
+        }
+        else
+        {
+            firstTalk.CopyTo(lines, 0);
         }
     }
 }
