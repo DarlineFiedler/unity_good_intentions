@@ -1,0 +1,52 @@
+previosSceneIndex
+playerFacing
+damage
+safePoint
+
+// First Boss
+    bossIsAttaking
+    ForestSpiritIsDead
+// BB
+    hasBB
+    foundBB
+// Music
+    musicVolume
+    musicMuted
+// Power
+    // save
+        save
+    // shooting
+        hasBell 
+    // Healing
+        maxHealth
+        currentHealth
+        canHeal
+        lowHealth
+        Healing
+        isHealing
+    // let thinks grow
+        hasFirstPower 
+        // Shrooms
+            shroomName: {
+                Shroom1
+                Shroom2
+                Shroom3
+                Shroom4
+                Spike2
+                Tower1 //temporär
+            }
+            ranks:{
+                isRankWallOpen
+            }
+// Talking
+    isTalking
+    // Talk to mum (bevorBoss)
+        everTalkToMom
+        ignoreMom
+        talkedToMomAfterBell
+    // Talk to Bro (bevorBoss)
+        everTalkToBro
+        talkedToBroAfterBell
+        leaveTreeOnceAfterTalkedToBro
+    // Talk to Robben (bevorBoss)
+        everTalkedToRobben

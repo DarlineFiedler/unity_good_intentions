@@ -22,8 +22,8 @@ public class BbBehavior : MonoBehaviour
     {
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            Debug.Log("Welp");
             PlayerPrefs.SetInt("hasBB", 1);
+            PlayerPrefs.SetInt("safePoint", 17);
             BB.SetActive(false);
         }
     }

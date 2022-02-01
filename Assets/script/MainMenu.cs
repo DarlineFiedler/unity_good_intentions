@@ -23,8 +23,42 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("maxHealth", 3f);
         PlayerPrefs.SetFloat("currentHealth", 3f);
         PlayerPrefs.SetFloat("damage", 1f);
-        PlayerPrefs.SetInt("hasBell", 0);
         PlayerPrefs.SetInt("hasBB", 0);
+        PlayerPrefs.SetInt("isHealing", 0);
+        PlayerPrefs.SetInt("foundBB", 0);
+        PlayerPrefs.SetInt("isTalking", 0);
+        PlayerPrefs.SetFloat("Healing", 2f);
+        PlayerPrefs.SetInt("safePoint", 1);
+
+        // need for Talking
+        PlayerPrefs.SetInt("everTalkToMom", 0);
+        PlayerPrefs.SetInt("ignoreMom", 0);
+        PlayerPrefs.SetInt("talkedToMomAfterBell", 0);
+        PlayerPrefs.SetInt("everTalkToBro", 0);
+        PlayerPrefs.SetInt("talkedToBroAfterBell", 0);
+        PlayerPrefs.SetInt("leaveTreeOnceAfterTalkedToBro", 0);
+        PlayerPrefs.SetInt("everTalkedToRobben", 0);
+
+        // set skills
+        PlayerPrefs.SetInt("hasBell", 0);
+        PlayerPrefs.SetInt("canHeal", 0);
+        PlayerPrefs.SetInt("hasFirstPower", 0);
+
+        if (!PlayerPrefs.HasKey("safePoint"))
+        {
+            PlayerPrefs.SetInt("safePoint", 1);
+        }
+
+        //reset Shroomes and rankes
+        PlayerPrefs.SetInt("isRankWallOpen", 0);
+        PlayerPrefs.SetInt("Shroom1", 1);
+        PlayerPrefs.SetInt("Shroom2", 1);
+        PlayerPrefs.SetInt("Shroom3", 0);
+        PlayerPrefs.SetInt("Shroom4", 0);
+        PlayerPrefs.SetInt("Spike2", 0);
+
+        //resetBoss
+        PlayerPrefs.SetInt("ForestSpiritIsDead", 0);
     }
 
     public void HideMenu()

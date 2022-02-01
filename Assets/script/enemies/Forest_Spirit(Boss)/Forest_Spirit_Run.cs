@@ -49,6 +49,7 @@ public class Forest_Spirit_Run : StateMachineBehaviour
         )
         {
             animator.SetTrigger("Attack");
+            PlayerPrefs.SetInt("bossIsAttaking", 1);
         }
     }
 
