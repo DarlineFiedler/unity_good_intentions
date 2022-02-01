@@ -11,6 +11,28 @@ public class Forest_Spirit : MonoBehaviour
     [SerializeField]
     BoxCollider2D attackBox;
 
+    float health = 30f;
+
+    float playerDamage = 1f;
+
+    BoxCollider2D forestSpiritCollider;
+
+    public GameObject fallingSpikes;
+
+    Animator myAnimator;
+
+    [SerializeField]
+    GameObject barrier;
+
+    [SerializeField]
+    GameObject barrierTrigger;
+
+    private void Start()
+    {
+        playerDamage = PlayerPrefs.GetFloat("damage");
+        myAnimator = GetComponent<Animator>();
+    }
+
     public void LookAtPlayer()
     {
         if (PlayerPrefs.GetInt("bossIsAttaking") == 0)
@@ -33,9 +55,34 @@ public class Forest_Spirit : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Bullet")
+        {
+            health -= playerDamage;
+
+            if (health <= 10f)
+            {
+                myAnimator.SetBool("isEnraged", true);
+            }
+
+            // myAnimator.SetTrigger("getHurt");
+            if (health <= 0)
+            {
+                // myAnimator.SetBool("isDead", true);
+                //forestSpiritCollider.enabled = false;
+                Destroy (gameObject);
+                barrier.SetActive(false);
+                barrierTrigger.SetActive(false);
+                PlayerPrefs.SetInt("ForestSpiritIsDead", 1);
+            }
+        }
+    }
+
     public void AttackPlayer()
     {
         attackBox.enabled = true;
+        Instantiate(fallingSpikes, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     public void AttackOver()

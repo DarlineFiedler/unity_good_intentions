@@ -51,6 +51,13 @@ public class SlugBehavior : MonoBehaviour
         playerDamage = PlayerPrefs.GetFloat("damage");
         myAnimator = GetComponent<Animator>();
         slugCollider = GetComponent<BoxCollider2D>();
+
+        if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
+        {
+            myAnimator.SetBool("isAngry", true);
+            speed = 3f;
+            health = 2f;
+        }
     }
 
     void Update()

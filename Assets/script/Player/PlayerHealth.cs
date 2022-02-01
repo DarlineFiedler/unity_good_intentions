@@ -23,6 +23,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     float waitingTime = 6f;
 
+    [SerializeField]
+    float numberOfHealing = 2f;
+
     BoxCollider2D myBoxCollider;
 
     bool isHealing = false;
@@ -59,10 +62,19 @@ public class PlayerHealth : MonoBehaviour
             {
                 myAnimator.SetBool("isDead", false);
                 catHeadAnimator.SetBool("isDead", false);
-                SceneManager.LoadScene(1);
+                if (
+                    PlayerPrefs.GetInt("safePoint") == 7 ||
+                    PlayerPrefs.GetInt("safePoint") == 13 ||
+                    PlayerPrefs.GetInt("safePoint") == 17
+                )
+                {
+                    PlayerPrefs.SetInt("previosSceneIndex", 1000);
+                }
+                SceneManager.LoadScene(PlayerPrefs.GetInt("safePoint"));
                 PlayerPrefs
                     .SetFloat("currentHealth",
                     PlayerPrefs.GetFloat("maxHealth"));
+                PlayerPrefs.SetFloat("Healing", numberOfHealing);
             }
             else
             {
@@ -92,7 +104,8 @@ public class PlayerHealth : MonoBehaviour
         if (
             !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) ||
             playerHasHorizontalSpeed ||
-            PlayerPrefs.GetInt("canHeal") == 0
+            PlayerPrefs.GetInt("canHeal") == 0 ||
+            PlayerPrefs.GetFloat("Healing") <= 0
         )
         {
             return;
@@ -101,13 +114,20 @@ public class PlayerHealth : MonoBehaviour
         {
             if (
                 health < PlayerPrefs.GetFloat("maxHealth") &&
-                PlayerPrefs.GetFloat("currentHealth") > 0
+                PlayerPrefs.GetFloat("currentHealth") > 0 &&
+                PlayerPrefs.GetFloat("Healing") > 0
             )
             {
                 myAnimator.SetTrigger("isHealing");
                 isHealing = true;
                 PlayerPrefs.SetInt("isHealing", 1);
-                health += 1f;
+                health += 2f;
+                if (health > 3f)
+                {
+                    health = 3f;
+                }
+                PlayerPrefs
+                    .SetFloat("Healing", (PlayerPrefs.GetFloat("Healing") - 1));
                 PlayerPrefs.SetFloat("currentHealth", health);
             }
         }
@@ -162,6 +182,27 @@ public class PlayerHealth : MonoBehaviour
             catHeadAnimator.SetTrigger("getHurt");
             health -= 1;
             PlayerPrefs.SetFloat("currentHealth", health);
+        }
+
+        if (other.tag == "curruptionPuddle")
+        {
+            StartCoroutine(DamageOverTimeCoroutine(2f));
+        }
+    }
+
+    IEnumerator DamageOverTimeCoroutine(float damageAmount)
+    {
+        float amountDamaged = 0f;
+        float damagePerLoop = 1f;
+
+        while (amountDamaged < damageAmount)
+        {
+            health -= damagePerLoop;
+            amountDamaged += damagePerLoop;
+            myAnimator.SetTrigger("getHurt");
+            catHeadAnimator.SetTrigger("getHurt");
+            PlayerPrefs.SetFloat("currentHealth", health);
+            yield return new WaitForSecondsRealtime(1f);
         }
     }
 }

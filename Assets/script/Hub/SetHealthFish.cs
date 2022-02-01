@@ -13,6 +13,14 @@ public class SetHealthFish : MonoBehaviour
     [SerializeField]
     float numberOfFish = 1f;
 
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("currentHealth"))
+        {
+            PlayerPrefs.SetFloat("currentHealth", 3f);
+        }
+    }
+
     void Update()
     {
         if (PlayerPrefs.GetFloat("currentHealth") >= numberOfFish)

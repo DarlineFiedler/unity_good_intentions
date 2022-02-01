@@ -42,6 +42,13 @@ public class SquidBehavior : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
+
+        if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
+        {
+            myAnimator.SetBool("isAngry", true);
+            speed = 150f;
+            health = 4f;
+        }
     }
 
     void UpdatePath()

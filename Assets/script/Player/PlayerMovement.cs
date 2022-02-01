@@ -83,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
             PlayerPrefs.GetInt("isHealing") == 0 &&
-            PlayerPrefs.GetInt("isTalking") == 0
+            PlayerPrefs.GetInt("isTalking") == 0 &&
+            PlayerPrefs.GetInt("save") == 0
         )
         {
             moveInput = value.Get<Vector2>();
@@ -95,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
             PlayerPrefs.GetInt("isHealing") == 0 &&
-            PlayerPrefs.GetInt("isTalking") == 0
+            PlayerPrefs.GetInt("isTalking") == 0 &&
+            PlayerPrefs.GetInt("save") == 0
         )
         {
             if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
@@ -116,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
             PlayerPrefs.GetInt("isHealing") == 0 &&
-            PlayerPrefs.GetInt("isTalking") == 0
+            PlayerPrefs.GetInt("isTalking") == 0 &&
+            PlayerPrefs.GetInt("save") == 0
         )
         {
             Vector2 placerVelocity =
@@ -167,9 +170,6 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.GetInt("isTalking") == 0
         )
         {
-            /* colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
-        Debug.Log("wat is on Position ColliderPosition");
-        Debug.Log(otherColliders[colliderPosition]); */
             if (
                 myBoxCollider
                     .IsTouchingLayers(LayerMask.GetMask("Interactables"))
@@ -201,6 +201,24 @@ public class PlayerMovement : MonoBehaviour
                 {
                     myCollision.GetComponent<RobbenBehavior>().Interacting();
                 }
+                if (myCollision.tag == "Shroom")
+                {
+                    myCollision.GetComponent<showShroomText>().Interacting();
+                }
+                if (myCollision.tag == "Wallblock")
+                {
+                    myCollision.GetComponent<OpenWallblock>().Interacting();
+                }
+                if (myCollision.tag == "Save")
+                {
+                    myCollision.GetComponent<SaveGame>().Interacting();
+                }
+                if (myCollision.tag == "FirstPower")
+                {
+                    myCollision
+                        .GetComponent<CollectingFirstPower>()
+                        .Interacting();
+                }
             }
         }
     }
@@ -215,7 +233,8 @@ public class PlayerMovement : MonoBehaviour
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
             PlayerPrefs.GetInt("isHealing") == 0 &&
-            PlayerPrefs.GetInt("isTalking") == 0
+            PlayerPrefs.GetInt("isTalking") == 0 &&
+            PlayerPrefs.GetInt("save") == 0
         )
         {
             if (PlayerPrefs.GetInt("hasBell") == 1)
@@ -245,6 +264,16 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("canHeal", 0);
         PlayerPrefs.SetInt("isTalking", 0);
         PlayerPrefs.SetInt("everTalkedToRobben", 0);
+        PlayerPrefs.SetFloat("Healing", 2f);
+        PlayerPrefs.SetInt("safePoint", 1);
+        PlayerPrefs.SetInt("isRankWallOpen", 0);
+        PlayerPrefs.SetInt("ForestSpiritIsDead", 0);
+        PlayerPrefs.SetInt("Shroom1", 0);
+        PlayerPrefs.SetInt("Shroom2", 0);
+        PlayerPrefs.SetInt("Shroom3", 0);
+        PlayerPrefs.SetInt("Shroom4", 0);
+        PlayerPrefs.SetInt("Spike2", 0);
+        PlayerPrefs.SetInt("hasFirstPower", 0);
     }
 
     void OnResetBB(InputValue value)

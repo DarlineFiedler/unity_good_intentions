@@ -10,6 +10,9 @@ public class RobbenBehavior : MonoBehaviour
 
     Animator myAnimator;
 
+    [SerializeField]
+    string location;
+
     public GameObject Text;
 
     [SerializeField]
@@ -46,10 +49,35 @@ public class RobbenBehavior : MonoBehaviour
         myAnimator = GetComponent<Animator>();
 
         PlayerPrefs.SetInt("isTalking", 0);
+
+        if (
+            location == "Tower1" &&
+            PlayerPrefs.GetInt("ForestSpiritIsDead") == 1
+        )
+        {
+            Destroy (gameObject);
+        }
+        if (
+            (
+            location == "Boss" && PlayerPrefs.GetInt("ForestSpiritIsDead") == 0
+            ) ||
+            (
+            location == "Boss" &&
+            (
+            PlayerPrefs.GetInt("hasBB") == 1 ||
+            PlayerPrefs.GetInt("foundBB") == 1
+            )
+            ) ||
+            location == "Boss" && PlayerPrefs.GetInt("everTalkedToRobben") == 0
+        )
+        {
+            Destroy (gameObject);
+        }
     }
 
     void Update()
     {
+        Debug.Log(PlayerPrefs.GetInt("ForestSpiritIsDead"));
         getText();
         if (Input.GetKeyDown(KeyCode.Space) && isTalking)
         {
@@ -124,7 +152,14 @@ public class RobbenBehavior : MonoBehaviour
             }
             else
             {
-                PlayerPrefs.SetInt("everTalkedToRobben", 1);
+                if (location == "Tower1")
+                {
+                    PlayerPrefs.SetInt("everTalkedToRobben", 1);
+                }
+                if (location == "Boss")
+                {
+                    PlayerPrefs.SetInt("talkedToRobbenAfterBoss", 1);
+                }
                 myAnimator.SetBool("isTalking", false);
                 DialogeBox.SetActive(false);
                 isTalking = false;
@@ -133,7 +168,14 @@ public class RobbenBehavior : MonoBehaviour
         }
         else
         {
-            PlayerPrefs.SetInt("everTalkedToRobben", 1);
+            if (location == "Tower1")
+            {
+                PlayerPrefs.SetInt("everTalkedToRobben", 1);
+            }
+            if (location == "Boss")
+            {
+                PlayerPrefs.SetInt("talkedToRobbenAfterBoss", 1);
+            }
             myAnimator.SetBool("isTalking", false);
             DialogeBox.SetActive(false);
             isTalking = false;
@@ -143,13 +185,28 @@ public class RobbenBehavior : MonoBehaviour
 
     void getText()
     {
-        if (PlayerPrefs.GetInt("everTalkedToRobben") == 1)
+        if (location == "Tower1")
         {
-            talkAgain.CopyTo(lines, 0);
+            if (PlayerPrefs.GetInt("everTalkedToRobben") == 1)
+            {
+                talkAgain.CopyTo(lines, 0);
+            }
+            else
+            {
+                firstTalk.CopyTo(lines, 0);
+            }
         }
-        else
+
+        if (location == "Boss")
         {
-            firstTalk.CopyTo(lines, 0);
+            if (PlayerPrefs.GetInt("talkedToRobbenAfterBoss") == 1)
+            {
+                talkAgain.CopyTo(lines, 0);
+            }
+            else
+            {
+                firstTalk.CopyTo(lines, 0);
+            }
         }
     }
 }

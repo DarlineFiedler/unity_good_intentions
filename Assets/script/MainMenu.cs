@@ -27,6 +27,8 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("isHealing", 0);
         PlayerPrefs.SetInt("foundBB", 0);
         PlayerPrefs.SetInt("isTalking", 0);
+        PlayerPrefs.SetFloat("Healing", 2f);
+        PlayerPrefs.SetInt("safePoint", 1);
 
         // need for Talking
         PlayerPrefs.SetInt("everTalkToMom", 0);
@@ -40,6 +42,23 @@ public class MainMenu : MonoBehaviour
         // set skills
         PlayerPrefs.SetInt("hasBell", 0);
         PlayerPrefs.SetInt("canHeal", 0);
+        PlayerPrefs.SetInt("hasFirstPower", 0);
+
+        if (!PlayerPrefs.HasKey("safePoint"))
+        {
+            PlayerPrefs.SetInt("safePoint", 1);
+        }
+
+        //reset Shroomes and rankes
+        PlayerPrefs.SetInt("isRankWallOpen", 0);
+        PlayerPrefs.SetInt("Shroom1", 1);
+        PlayerPrefs.SetInt("Shroom2", 1);
+        PlayerPrefs.SetInt("Shroom3", 0);
+        PlayerPrefs.SetInt("Shroom4", 0);
+        PlayerPrefs.SetInt("Spike2", 0);
+
+        //resetBoss
+        PlayerPrefs.SetInt("ForestSpiritIsDead", 0);
     }
 
     public void HideMenu()

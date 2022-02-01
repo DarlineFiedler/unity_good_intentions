@@ -18,6 +18,11 @@ TagManager:
   - leftBarrier
   - Boss
   - Robbenraupe
+  - Shroom
+  - Wallblock
+  - Save
+  - FirstPower
+  - curruptionPuddle
   layers:
   - Default
   - TransparentFX

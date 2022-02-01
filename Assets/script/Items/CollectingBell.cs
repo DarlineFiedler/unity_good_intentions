@@ -36,9 +36,10 @@ public class CollectingBell : MonoBehaviour
     void Start()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
-        textComponent.text = string.Empty;
+
+        /*  textComponent.text = string.Empty;
         textSpeaker.text = speaker;
-        StartDialogue();
+        StartDialogue(); */
         PlayerPrefs.SetInt("isTalking", 0);
     }
 
@@ -49,6 +50,7 @@ public class CollectingBell : MonoBehaviour
             textComponent.text = string.Empty;
             textSpeaker.text = speaker;
             DialogeBox.SetActive(true);
+            PlayerPrefs.SetInt("safePoint", 7);
             StartDialogue();
         }
     }

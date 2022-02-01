@@ -10,7 +10,8 @@ public class MomBehavior : MonoBehaviour
 
     Animator myAnimator;
 
-    public GameObject Text;
+    [SerializeField]
+    GameObject Text;
 
     [SerializeField]
     string[] ignoreMom;
@@ -206,9 +207,11 @@ public class MomBehavior : MonoBehaviour
                 }
                 if (
                     PlayerPrefs.GetInt("hasBell") == 1 &&
-                    PlayerPrefs.GetInt("talkedToMomAfterBell") == 0
+                    PlayerPrefs.GetInt("talkedToMomAfterBell") == 0 &&
+                    !talkingBecauseOfTrigger
                 )
                 {
+                    PlayerPrefs.SetInt("safePoint", 1);
                     PlayerPrefs.SetInt("talkedToMomAfterBell", 1);
                     PlayerPrefs.SetInt("canHeal", 1);
                     rightBarrier.enabled = false;
@@ -239,11 +242,14 @@ public class MomBehavior : MonoBehaviour
             }
             if (
                 PlayerPrefs.GetInt("hasBell") == 1 &&
-                PlayerPrefs.GetInt("talkedToMomAfterBell") == 0
+                PlayerPrefs.GetInt("talkedToMomAfterBell") == 0 &&
+                !talkingBecauseOfTrigger
             )
             {
+                PlayerPrefs.SetInt("safePoint", 1);
                 PlayerPrefs.SetInt("talkedToMomAfterBell", 1);
                 PlayerPrefs.SetInt("canHeal", 1);
+                rightBarrier.enabled = false;
             }
             isTalking = false;
             PlayerPrefs.SetInt("isTalking", 0);
