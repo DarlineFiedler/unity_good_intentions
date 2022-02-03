@@ -14,6 +14,14 @@ public class TriggerDialoge : MonoBehaviour
     [SerializeField]
     Animator VAnimator;
 
+    private void Update()
+    {
+        if (Mom == null)
+        {
+            Destroy (gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")

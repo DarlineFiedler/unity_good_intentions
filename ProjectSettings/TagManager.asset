@@ -13,7 +13,6 @@ TagManager:
   - Bro
   - Ground
   - Falling
-  - test
   - BB
   - leftBarrier
   - Boss
@@ -23,6 +22,9 @@ TagManager:
   - Save
   - FirstPower
   - curruptionPuddle
+  - Wall
+  - MomWorry
+  - BroWorry
   layers:
   - Default
   - TransparentFX

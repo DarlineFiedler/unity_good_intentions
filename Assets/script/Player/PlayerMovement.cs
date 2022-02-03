@@ -19,21 +19,19 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D myBoxCollider;
 
     [SerializeField]
+    GameObject InfoBox;
+
+    [SerializeField]
     GameObject Orb;
 
     [SerializeField]
     GameObject BellOrb;
 
-    [SerializeField]
-    GameObject BB;
-
-    Sprite sprite;
-
     Animator myAnimator;
 
-    bool isJumping;
-
     GameObject myCollision;
+
+    AudioSource audioSrc;
 
     /* ContactFilter2D filter = new ContactFilter2D();
 
@@ -45,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
         PlayerPrefs.SetInt("isTalking", 0);
         /* 
         LayerMask layerMask = (LayerMask) LayerMask.GetMask("Interactables");
@@ -130,6 +129,17 @@ public class PlayerMovement : MonoBehaviour
                 Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
 
             myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
+            if (playerHasHorizontalSpeed)
+            {
+                if (!audioSrc.isPlaying)
+                {
+                    audioSrc.Play();
+                }
+            }
+            else
+            {
+                audioSrc.Stop();
+            }
         }
         else
         {
@@ -185,9 +195,17 @@ public class PlayerMovement : MonoBehaviour
                         .GetComponent<MomBehavior>()
                         .Interacting("player");
                 }
+                if (myCollision.tag == "MomWorry")
+                {
+                    myCollision.GetComponent<MomWorryBehavior>().Interacting();
+                }
                 if (myCollision.tag == "Bro")
                 {
                     myCollision.GetComponent<BroBehavior>().Interacting();
+                }
+                if (myCollision.tag == "BroWorry")
+                {
+                    myCollision.GetComponent<BroWorryBehavior>().Interacting();
                 }
                 if (myCollision.tag == "Bell")
                 {
@@ -218,6 +236,8 @@ public class PlayerMovement : MonoBehaviour
                     myCollision
                         .GetComponent<CollectingFirstPower>()
                         .Interacting();
+
+                    InfoBox.SetActive(false);
                 }
             }
         }
@@ -246,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnOpenMenu(InputValue value)
     {
-        //SceneManager.LoadScene(0);
+        //SceneManager.LoadSceneAsync(0);
         Debug.Log("QUIT!");
         Application.Quit();
     }
@@ -274,6 +294,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("Shroom4", 0);
         PlayerPrefs.SetInt("Spike2", 0);
         PlayerPrefs.SetInt("hasFirstPower", 0);
+        PlayerPrefs.SetInt("momHasBB", 0);
+        PlayerPrefs.SetInt("talkedToBroAfterBoss", 0);
     }
 
     void OnResetBB(InputValue value)

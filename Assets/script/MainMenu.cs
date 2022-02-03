@@ -38,6 +38,9 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("talkedToBroAfterBell", 0);
         PlayerPrefs.SetInt("leaveTreeOnceAfterTalkedToBro", 0);
         PlayerPrefs.SetInt("everTalkedToRobben", 0);
+        PlayerPrefs.SetInt("momHasBB", 0);
+        PlayerPrefs.SetInt("talkedToBroAfterBoss", 0);
+        PlayerPrefs.SetInt("talkedToRobbenAfterBoss", 0);
 
         // set skills
         PlayerPrefs.SetInt("hasBell", 0);

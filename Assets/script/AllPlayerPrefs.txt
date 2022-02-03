@@ -50,3 +50,7 @@ safePoint
         leaveTreeOnceAfterTalkedToBro
     // Talk to Robben (bevorBoss)
         everTalkedToRobben
+    // Talk to Mom (afterBoss)
+        momHasBB
+    // Talk to Bro (afterBoss)
+        talkedToBroAfterBoss

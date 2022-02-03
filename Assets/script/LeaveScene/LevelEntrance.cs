@@ -38,7 +38,7 @@ public class LevelEntrance : MonoBehaviour
         yield return new WaitForSecondsRealtime(levelLoadDelay);
 
         // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene (nextSceneIndex);
+        SceneManager.LoadSceneAsync (nextSceneIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

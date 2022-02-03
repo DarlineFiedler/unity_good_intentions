@@ -11,6 +11,9 @@ public class FrogBehavior : MonoBehaviour
     float speed = 10f;
 
     [SerializeField]
+    float speedAfter = 12f;
+
+    [SerializeField]
     bool groundDetected = true;
 
     [SerializeField]
@@ -58,9 +61,6 @@ public class FrogBehavior : MonoBehaviour
 
     BoxCollider2D frogCollider;
 
-    [SerializeField]
-    bool canBeCurrupted = false;
-
     void Start()
     {
         waitCountdown = timewaiting;
@@ -72,10 +72,10 @@ public class FrogBehavior : MonoBehaviour
         frogCollider = GetComponent<BoxCollider2D>();
 
         //myRigidbody.isKinematic = true;
-        if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1 && canBeCurrupted)
+        if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
         {
             myAnimator.SetBool("isAngry", true);
-            speed = 15f;
+            speed = speedAfter;
             health = 4f;
         }
         else

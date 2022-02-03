@@ -18,7 +18,10 @@ public class hitSpikes : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        StartCoroutine(SetPlayerPosition());
+        if (other.tag == "Player")
+        {
+            StartCoroutine(SetPlayerPosition());
+        }
     }
 
     IEnumerator SetPlayerPosition()

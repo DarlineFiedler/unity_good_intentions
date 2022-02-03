@@ -19,9 +19,11 @@ public class enterBossFight : MonoBehaviour
 
     private bool isTrigger = false;
 
-    public GameObject barrier;
+    public GameObject Barrier;
 
     public GameObject Boss;
+
+    public GameObject TriggerBoss;
 
     void Start()
     {
@@ -29,6 +31,8 @@ public class enterBossFight : MonoBehaviour
         {
             Destroy (Boss);
             Destroy (gameObject);
+            Destroy (Barrier);
+            Destroy (TriggerBoss);
         }
         else
         {
@@ -57,7 +61,7 @@ public class enterBossFight : MonoBehaviour
         if (other.tag == "Player")
         {
             isTrigger = true;
-            barrier.SetActive(true);
+            Barrier.SetActive(true);
         }
     }
 }

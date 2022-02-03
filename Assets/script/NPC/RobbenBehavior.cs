@@ -77,7 +77,6 @@ public class RobbenBehavior : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PlayerPrefs.GetInt("ForestSpiritIsDead"));
         getText();
         if (Input.GetKeyDown(KeyCode.Space) && isTalking)
         {

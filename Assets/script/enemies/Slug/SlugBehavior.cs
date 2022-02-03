@@ -10,6 +10,9 @@ public class SlugBehavior : MonoBehaviour
     float speed = 0.2f;
 
     [SerializeField]
+    float speedAfter = 1.5f;
+
+    [SerializeField]
     bool groundDetected = true;
 
     [SerializeField]
@@ -55,7 +58,7 @@ public class SlugBehavior : MonoBehaviour
         if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
         {
             myAnimator.SetBool("isAngry", true);
-            speed = 3f;
+            speed = speedAfter;
             health = 2f;
         }
     }

@@ -65,12 +65,13 @@ public class PlayerHealth : MonoBehaviour
                 if (
                     PlayerPrefs.GetInt("safePoint") == 7 ||
                     PlayerPrefs.GetInt("safePoint") == 13 ||
+                    PlayerPrefs.GetInt("safePoint") == 15 ||
                     PlayerPrefs.GetInt("safePoint") == 17
                 )
                 {
                     PlayerPrefs.SetInt("previosSceneIndex", 1000);
                 }
-                SceneManager.LoadScene(PlayerPrefs.GetInt("safePoint"));
+                SceneManager.LoadSceneAsync(PlayerPrefs.GetInt("safePoint"));
                 PlayerPrefs
                     .SetFloat("currentHealth",
                     PlayerPrefs.GetFloat("maxHealth"));

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Random = UnityEngine.Random;
+
 public class Forest_Spirit : MonoBehaviour
 {
     public Transform player;
@@ -11,13 +13,15 @@ public class Forest_Spirit : MonoBehaviour
     [SerializeField]
     BoxCollider2D attackBox;
 
+    BoxCollider2D myBoxCollider;
+
     float health = 30f;
 
     float playerDamage = 1f;
 
     BoxCollider2D forestSpiritCollider;
 
-    public GameObject fallingSpikes;
+    public GameObject[] fallingSpikes;
 
     Animator myAnimator;
 
@@ -27,10 +31,14 @@ public class Forest_Spirit : MonoBehaviour
     [SerializeField]
     GameObject barrierTrigger;
 
+    int objectNumber = 0;
+
     private void Start()
     {
         playerDamage = PlayerPrefs.GetFloat("damage");
+        forestSpiritCollider = GetComponent<BoxCollider2D>();
         myAnimator = GetComponent<Animator>();
+        myBoxCollider = GetComponent<BoxCollider2D>();
     }
 
     public void LookAtPlayer()
@@ -66,12 +74,13 @@ public class Forest_Spirit : MonoBehaviour
                 myAnimator.SetBool("isEnraged", true);
             }
 
-            // myAnimator.SetTrigger("getHurt");
+            myAnimator.SetTrigger("getHurt");
             if (health <= 0)
             {
-                // myAnimator.SetBool("isDead", true);
-                //forestSpiritCollider.enabled = false;
-                Destroy (gameObject);
+                myAnimator.SetBool("isDead", true);
+                forestSpiritCollider.enabled = false;
+
+                //Destroy (gameObject);
                 barrier.SetActive(false);
                 barrierTrigger.SetActive(false);
                 PlayerPrefs.SetInt("ForestSpiritIsDead", 1);
@@ -82,12 +91,20 @@ public class Forest_Spirit : MonoBehaviour
     public void AttackPlayer()
     {
         attackBox.enabled = true;
-        Instantiate(fallingSpikes, new Vector3(0, 0, 0), Quaternion.identity);
+
+        myBoxCollider.enabled = false;
+        objectNumber = Random.Range(0, 10);
+        Debug.Log (objectNumber);
+        Instantiate(fallingSpikes[objectNumber],
+        new Vector3(0, 0, 0),
+        Quaternion.identity);
     }
 
     public void AttackOver()
     {
         attackBox.enabled = false;
+
+        myBoxCollider.enabled = true;
         PlayerPrefs.SetInt("bossIsAttaking", 0);
     }
 }

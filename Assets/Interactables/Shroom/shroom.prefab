@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Shroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4575440924492348685
 Transform:
@@ -73,7 +73,7 @@ GameObject:
   m_TagString: Shroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6988218547364142677
 Transform:
@@ -109,7 +109,7 @@ GameObject:
   m_TagString: Shroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7269550412091629357
 Transform:
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 7490133472135283148}
-  shroomName: Tower1
+  shroomName: Shroom2
   shroomAnimator: {fileID: 1720870787984672506}
   text1:
   - 'Maybe we need something to let it grow like the other mushrooms. '
@@ -194,7 +194,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!224 &2908729801172680618
 RectTransform:
@@ -368,7 +368,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &626068906477524626
 Transform:
@@ -496,4 +496,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shroomBodyCollider: {fileID: 3861538544336528154}
-  shroomName: Tower1
+  shroomName: Shroom2

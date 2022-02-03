@@ -21,6 +21,9 @@ public class CollectingFirstPower : MonoBehaviour
     GameObject DialogeBox;
 
     [SerializeField]
+    GameObject InfoBox;
+
+    [SerializeField]
     string speaker;
 
     [SerializeField]
@@ -112,6 +115,7 @@ public class CollectingFirstPower : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("hasFirstPower", 1);
+            PlayerPrefs.SetInt("safePoint", 15);
             DialogeBox.SetActive(false);
             PlayerPrefs.SetInt("Shroom1", 0);
             PlayerPrefs.SetInt("Shroom2", 0);
@@ -121,6 +125,7 @@ public class CollectingFirstPower : MonoBehaviour
             isTalking = false;
             PlayerPrefs.SetInt("isTalking", 0);
             Power1.SetActive(false);
+            InfoBox.SetActive(true);
         }
     }
 }
