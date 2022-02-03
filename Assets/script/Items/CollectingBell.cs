@@ -7,9 +7,17 @@ public class CollectingBell : MonoBehaviour
 {
     BoxCollider2D myBoxCollider;
 
-    public GameObject Bell;
+    [SerializeField]
+    GameObject Bell;
 
-    public GameObject Text;
+    [SerializeField]
+    GameObject Text;
+
+    [SerializeField]
+    GameObject Rune;
+
+    [SerializeField]
+    GameObject InfoBox;
 
     [SerializeField]
     TextMeshProUGUI textComponent;
@@ -76,6 +84,7 @@ public class CollectingBell : MonoBehaviour
         if (other.tag == "Player")
         {
             Text.SetActive(true);
+            Rune.SetActive(true);
         }
     }
 
@@ -84,6 +93,7 @@ public class CollectingBell : MonoBehaviour
         if (other.tag == "Player")
         {
             Text.SetActive(false);
+            Rune.SetActive(false);
         }
     }
 
@@ -120,6 +130,7 @@ public class CollectingBell : MonoBehaviour
             PlayerPrefs.SetInt("isTalking", 0);
             PlayerPrefs.SetInt("hasBell", 1);
             Bell.SetActive(false);
+            InfoBox.SetActive(true);
         }
     }
 }

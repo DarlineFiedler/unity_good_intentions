@@ -82,7 +82,11 @@ public class OpenWallblock : MonoBehaviour
                 DialogeBox.SetActive(true);
                 StartDialogue();
             }
-            if (side == "left" && PlayerPrefs.GetInt("hasFirstPower") == 1)
+            if (
+                side == "left" &&
+                PlayerPrefs.GetInt("hasFirstPower") == 1 &&
+                PlayerPrefs.GetInt("hasFirstPower") == 0
+            )
             {
                 PlayerPrefs.SetInt("isRankWallOpen", 1);
                 Destroy (Wallblock);

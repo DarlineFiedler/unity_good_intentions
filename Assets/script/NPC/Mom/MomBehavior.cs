@@ -11,6 +11,9 @@ public class MomBehavior : MonoBehaviour
     Animator myAnimator;
 
     [SerializeField]
+    GameObject InfoBox;
+
+    [SerializeField]
     GameObject Text;
 
     [SerializeField]
@@ -220,6 +223,7 @@ public class MomBehavior : MonoBehaviour
                     PlayerPrefs.SetInt("talkedToMomAfterBell", 1);
                     PlayerPrefs.SetInt("canHeal", 1);
                     rightBarrier.enabled = false;
+                    InfoBox.SetActive(true);
                 }
                 isTalking = false;
                 PlayerPrefs.SetInt("isTalking", 0);
@@ -255,6 +259,7 @@ public class MomBehavior : MonoBehaviour
                 PlayerPrefs.SetInt("talkedToMomAfterBell", 1);
                 PlayerPrefs.SetInt("canHeal", 1);
                 rightBarrier.enabled = false;
+                InfoBox.SetActive(true);
             }
             isTalking = false;
             PlayerPrefs.SetInt("isTalking", 0);

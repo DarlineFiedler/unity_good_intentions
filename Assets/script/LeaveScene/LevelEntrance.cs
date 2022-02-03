@@ -25,6 +25,7 @@ public class LevelEntrance : MonoBehaviour
     {
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
+            PlayerPrefs.SetInt("hideControll", 1);
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             StartCoroutine(LoadNextLevel());
 

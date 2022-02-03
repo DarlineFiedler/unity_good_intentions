@@ -25,6 +25,7 @@ TagManager:
   - Wall
   - MomWorry
   - BroWorry
+  - FallingSpikes
   layers:
   - Default
   - TransparentFX

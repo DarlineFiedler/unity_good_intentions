@@ -12,6 +12,9 @@ public class BbBehavior : MonoBehaviour
 
     public GameObject Text;
 
+    [SerializeField]
+    GameObject InfoBox;
+
     void Start()
     {
         myBoxCollider = GetComponent<BoxCollider2D>();
@@ -25,6 +28,7 @@ public class BbBehavior : MonoBehaviour
             PlayerPrefs.SetInt("hasBB", 1);
             PlayerPrefs.SetInt("safePoint", 17);
             BB.SetActive(false);
+            InfoBox.SetActive(true);
         }
     }
 

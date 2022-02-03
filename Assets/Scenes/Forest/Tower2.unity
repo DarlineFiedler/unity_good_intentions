@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &105316008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -425,7 +425,57 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 105316012}
+    m_ColliderPaths:
+    - - X: -46737032
+        Y: -104012928
+      - X: -62048556
+        Y: -104012928
+      - X: -62048556
+        Y: -106980656
+      - X: -46737032
+        Y: -106980656
+  - m_Collider: {fileID: 105316011}
+    m_ColliderPaths:
+    - - X: 113076128
+        Y: -50795336
+      - X: 97290280
+        Y: -50795336
+      - X: 97290280
+        Y: -52151600
+      - X: 113076128
+        Y: -52151600
+  - m_Collider: {fileID: 105316010}
+    m_ColliderPaths:
+    - - X: 74796168
+        Y: 2398309
+      - X: 61068296
+        Y: 2398309
+      - X: 61068296
+        Y: -611614
+      - X: 74796168
+        Y: -611614
+  - m_Collider: {fileID: 105316009}
+    m_ColliderPaths:
+    - - X: -66947068
+        Y: 38377432
+      - X: -75440872
+        Y: 38377432
+      - X: -75440872
+        Y: 36354484
+      - X: -66947068
+        Y: 36354484
+  - m_Collider: {fileID: 105316008}
+    m_ColliderPaths:
+    - - X: -26357426
+        Y: 163175296
+      - X: -45132456
+        Y: 163175296
+      - X: -45132456
+        Y: 159606064
+      - X: -26357426
+        Y: 159606064
   m_CompositePaths:
     m_Paths:
     - - {x: -2.635772, y: 15.960607}
@@ -478,7 +528,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105316007}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 230807e7b2f86cf42810fc00494d1ac4, type: 3}
   m_Name: 
@@ -3047,6 +3097,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3472303582545203759, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8498409142827135430, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -3815,7 +3869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129347585}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.938902, y: 37.9457, z: 69.13776}
+  m_LocalPosition: {x: -9.938902, y: 37.945747, z: 69.13776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

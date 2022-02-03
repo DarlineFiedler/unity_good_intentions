@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 7615924106619859660}
   m_Layer: 0
   m_Name: trigger
-  m_TagString: Untagged
+  m_TagString: FallingSpikes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -305,6 +305,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119515801, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a0fdb84d459e71f4aab9b443e7a9b4ba, type: 3}
     - target: {fileID: 1677470010, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 13.099976
@@ -312,6 +316,27 @@ PrefabInstance:
     - target: {fileID: 1677470010, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -11.261993
+      objectReference: {fileID: 0}
+    - target: {fileID: 2823892103449358437, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_text
+      value: Baby Brother
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472303582545203759, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651591329124648495, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_text
+      value: 'He is well, but got lost and just wants to go home.
+
+        Take him
+        home to Mom.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7753178559268743230, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.24450684
       objectReference: {fileID: 0}
     - target: {fileID: 8498409143793038411, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
       propertyPath: m_Name
@@ -435,6 +460,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &152076361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3472303582545203759, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
+  m_PrefabInstance: {fileID: 152076356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &202033422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255935674}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.0085402, y: -3.8271306, z: 69.44599}
+  m_LocalPosition: {x: -2.329627, y: -3.826977, z: 69.44599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2431,9 +2461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5141a4438f3d4ae49ad7256beb649477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelEntries: 10000000
+  levelEntries: 10000000e8030000
   resetPoints:
   - {fileID: 350385217}
+  - {fileID: 764442106}
   player: {fileID: 421358676}
   levelLoadDelay: 0.2
 --- !u!61 &1349765115
@@ -3931,6 +3962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BB: {fileID: 2046654161}
   Text: {fileID: 202033423}
+  InfoBox: {fileID: 152076361}
 --- !u!95 &2046654163
 Animator:
   serializedVersion: 4
