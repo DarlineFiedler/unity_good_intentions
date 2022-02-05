@@ -26,6 +26,7 @@ TagManager:
   - MomWorry
   - BroWorry
   - FallingSpikes
+  - Rank
   layers:
   - Default
   - TransparentFX
@@ -86,4 +87,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 2099196309
+    locked: 0
+  - name: cursor
+    uniqueID: 1780073551
     locked: 0

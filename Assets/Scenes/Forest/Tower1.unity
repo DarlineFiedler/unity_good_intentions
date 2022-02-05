@@ -347,6 +347,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &241085080
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7948109448904813913, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_Name
+      value: Mousebase2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7948109448904813918, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6ddab5585f2a55c459b29ffcc6f0f5ba, type: 3}
 --- !u!1 &509734692
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2227,10 @@ PrefabInstance:
     - target: {fileID: 6988218547364142682, guid: 1ba39ec93e8ec9c4086bf6dc0a8b0136, type: 3}
       propertyPath: m_Name
       value: shroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988218547364142682, guid: 1ba39ec93e8ec9c4086bf6dc0a8b0136, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7928045068679661028, guid: 1ba39ec93e8ec9c4086bf6dc0a8b0136, type: 3}
       propertyPath: DialogeBox

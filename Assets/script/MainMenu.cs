@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         PlayerPrefs.SetFloat("maxHealth", 3f);
         PlayerPrefs.SetFloat("currentHealth", 3f);
         PlayerPrefs.SetFloat("damage", 1f);
@@ -52,6 +53,8 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("safePoint", 1);
         }
 
+        PlayerPrefs.SetInt("hideControll", 0);
+
         //reset Shroomes and rankes
         PlayerPrefs.SetInt("isRankWallOpen", 0);
         PlayerPrefs.SetInt("Shroom1", 1);
@@ -59,9 +62,11 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Shroom3", 0);
         PlayerPrefs.SetInt("Shroom4", 0);
         PlayerPrefs.SetInt("Spike2", 0);
+        PlayerPrefs.SetInt("isRankBig", 0);
 
         //resetBoss
         PlayerPrefs.SetInt("ForestSpiritIsDead", 0);
+        PlayerPrefs.SetInt("safeAfterBoss", 0);
     }
 
     public void HideMenu()

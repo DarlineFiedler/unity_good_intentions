@@ -16,6 +16,9 @@ public class LeaveForest : MonoBehaviour
     string[] withBB;
 
     [SerializeField]
+    string[] afterBB;
+
+    [SerializeField]
     string[] lines;
 
     [SerializeField]
@@ -125,6 +128,10 @@ public class LeaveForest : MonoBehaviour
         {
             //Array.Copy(talkFirstTime, lines, 3);
             withBB.CopyTo(lines, 0);
+        }
+        else if (PlayerPrefs.GetInt("momHasBB") == 1)
+        {
+            afterBB.CopyTo(lines, 0);
         }
         else
         {

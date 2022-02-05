@@ -16,6 +16,8 @@ public class LoadPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(PlayerPrefs.GetInt("previosSceneIndex"));
+
         // set Player Position
         if (PlayerPrefs.HasKey("previosSceneIndex"))
         {

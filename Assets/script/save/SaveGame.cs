@@ -45,6 +45,10 @@ public class SaveGame : MonoBehaviour
             PlayerPrefs.SetInt("safePoint", seceneNumber);
             PlayerPrefs.SetFloat("Healing", 2f);
             PlayerPrefs.SetFloat("currentHealth", 3f);
+            if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
+            {
+                PlayerPrefs.SetInt("safeAfterBoss", 1);
+            }
         }
     }
 

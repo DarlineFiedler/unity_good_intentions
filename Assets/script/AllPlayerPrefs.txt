@@ -15,6 +15,7 @@ safePoint
 // Power
     // save
         save
+        safeAfterBoss
     // shooting
         hasBell 
     // Healing
@@ -37,6 +38,7 @@ safePoint
             }
             ranks:{
                 isRankWallOpen
+                isRankBig
             }
 // Talking
     isTalking

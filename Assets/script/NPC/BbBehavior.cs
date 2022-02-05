@@ -27,6 +27,7 @@ public class BbBehavior : MonoBehaviour
         {
             PlayerPrefs.SetInt("hasBB", 1);
             PlayerPrefs.SetInt("safePoint", 17);
+            PlayerPrefs.SetInt("safeAfterBoss", 1);
             BB.SetActive(false);
             InfoBox.SetActive(true);
         }

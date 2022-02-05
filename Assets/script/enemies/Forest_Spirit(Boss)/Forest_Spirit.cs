@@ -94,7 +94,6 @@ public class Forest_Spirit : MonoBehaviour
 
         myBoxCollider.enabled = false;
         objectNumber = Random.Range(0, 10);
-        Debug.Log (objectNumber);
         Instantiate(fallingSpikes[objectNumber],
         new Vector3(0, 0, 0),
         Quaternion.identity);

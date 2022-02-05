@@ -60,6 +60,17 @@ public class PlayerHealth : MonoBehaviour
             catHeadAnimator.SetBool("isDead", true);
             if (waitCountdown <= 0)
             {
+                if (PlayerPrefs.GetInt("safeAfterBoss") == 0)
+                {
+                    PlayerPrefs.SetInt("ForestSpiritIsDead", 0);
+                    PlayerPrefs.SetInt("hasFirstPower", 0);
+                    PlayerPrefs.SetInt("isRankWallOpen", 0);
+                    PlayerPrefs.SetInt("Shroom1", 1);
+                    PlayerPrefs.SetInt("Shroom2", 1);
+                    PlayerPrefs.SetInt("Shroom3", 0);
+                    PlayerPrefs.SetInt("Shroom4", 0);
+                    PlayerPrefs.SetInt("Spike2", 0);
+                }
                 myAnimator.SetBool("isDead", false);
                 catHeadAnimator.SetBool("isDead", false);
                 if (

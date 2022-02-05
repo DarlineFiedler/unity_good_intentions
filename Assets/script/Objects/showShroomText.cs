@@ -59,17 +59,20 @@ public class showShroomText : MonoBehaviour
     {
         if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Player")))
         {
-            if (PlayerPrefs.GetInt("hasFirstPower") == 1)
+            if (PlayerPrefs.GetInt(shroomName) == 0)
             {
-                shroomAnimator.SetBool("isActive", true);
-                PlayerPrefs.SetInt(shroomName, 1);
-            }
-            else
-            {
-                textComponent.text = string.Empty;
-                textSpeaker.text = speaker;
-                DialogeBox.SetActive(true);
-                StartDialogue();
+                if (PlayerPrefs.GetInt("hasFirstPower") == 1)
+                {
+                    shroomAnimator.SetBool("isActive", true);
+                    PlayerPrefs.SetInt(shroomName, 1);
+                }
+                else
+                {
+                    textComponent.text = string.Empty;
+                    textSpeaker.text = speaker;
+                    DialogeBox.SetActive(true);
+                    StartDialogue();
+                }
             }
         }
     }
@@ -78,6 +81,7 @@ public class showShroomText : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(shroomName) == 1)
         {
+            // Destroy (Text);
             myBoxCollider.enabled = false;
         }
         else
@@ -112,7 +116,14 @@ public class showShroomText : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Text.SetActive(true);
+            if (PlayerPrefs.GetInt(shroomName) == 0)
+            {
+                Text.SetActive(true);
+            }
+            else
+            {
+                Text.SetActive(false);
+            }
         }
     }
 

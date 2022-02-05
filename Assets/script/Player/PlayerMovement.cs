@@ -19,9 +19,6 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D myBoxCollider;
 
     [SerializeField]
-    GameObject InfoBox;
-
-    [SerializeField]
     GameObject Orb;
 
     [SerializeField]
@@ -63,18 +60,11 @@ public class PlayerMovement : MonoBehaviour
             Orb.SetActive(true);
             BellOrb.SetActive(true);
         }
-        else
-        {
-            Orb.SetActive(false);
-            BellOrb.SetActive(false);
-        }
+
         if (PlayerPrefs.GetInt("hasBB") == 1)
         {
             myAnimator.SetBool("hasBB", true);
         }
-
-        //colliderPosition = myRigidbody.OverlapCollider(filter, otherColliders);
-        //
     }
 
     void OnMove(InputValue value)
@@ -168,8 +158,8 @@ public class PlayerMovement : MonoBehaviour
         bool playerHasHorizontalSpeed =
             Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
         if (
-            !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) ||
-            playerHasHorizontalSpeed
+            !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) /* ||
+            playerHasHorizontalSpeed */
         )
         {
             return;
@@ -185,59 +175,65 @@ public class PlayerMovement : MonoBehaviour
                     .IsTouchingLayers(LayerMask.GetMask("Interactables"))
             )
             {
+                if (!playerHasHorizontalSpeed)
+                {
+                    if (myCollision.tag == "Mom")
+                    {
+                        myCollision
+                            .GetComponent<MomBehavior>()
+                            .Interacting("player");
+                    }
+                    if (myCollision.tag == "MomWorry")
+                    {
+                        myCollision
+                            .GetComponent<MomWorryBehavior>()
+                            .Interacting();
+                    }
+                    if (myCollision.tag == "Bro")
+                    {
+                        myCollision.GetComponent<BroBehavior>().Interacting();
+                    }
+                    if (myCollision.tag == "BroWorry")
+                    {
+                        myCollision
+                            .GetComponent<BroWorryBehavior>()
+                            .Interacting();
+                    }
+                    if (myCollision.tag == "Bell")
+                    {
+                        myCollision
+                            .GetComponent<CollectingBell>()
+                            .Interacting();
+                    }
+                    if (myCollision.tag == "BB")
+                    {
+                        myCollision.GetComponent<BbBehavior>().Interacting();
+                    }
+                    if (myCollision.tag == "Robbenraupe")
+                    {
+                        myCollision
+                            .GetComponent<RobbenBehavior>()
+                            .Interacting();
+                    }
+                }
                 if (myCollision.tag == "Entrance")
                 {
                     myCollision.GetComponent<LevelEntrance>().Interacting();
                 }
-                if (myCollision.tag == "Mom")
-                {
-                    myCollision
-                        .GetComponent<MomBehavior>()
-                        .Interacting("player");
-                }
-                if (myCollision.tag == "MomWorry")
-                {
-                    myCollision.GetComponent<MomWorryBehavior>().Interacting();
-                }
-                if (myCollision.tag == "Bro")
-                {
-                    myCollision.GetComponent<BroBehavior>().Interacting();
-                }
-                if (myCollision.tag == "BroWorry")
-                {
-                    myCollision.GetComponent<BroWorryBehavior>().Interacting();
-                }
-                if (myCollision.tag == "Bell")
-                {
-                    myCollision.GetComponent<CollectingBell>().Interacting();
-                }
-                if (myCollision.tag == "BB")
-                {
-                    myCollision.GetComponent<BbBehavior>().Interacting();
-                }
-                if (myCollision.tag == "Robbenraupe")
-                {
-                    myCollision.GetComponent<RobbenBehavior>().Interacting();
-                }
+
                 if (myCollision.tag == "Shroom")
                 {
-                    myCollision.GetComponent<showShroomText>().Interacting();
+                    if (myCollision.GetComponent<showShroomText>() != null)
+                    {
+                        myCollision
+                            .GetComponent<showShroomText>()
+                            .Interacting();
+                    }
                 }
-                if (myCollision.tag == "Wallblock")
-                {
-                    myCollision.GetComponent<OpenWallblock>().Interacting();
-                }
-                if (myCollision.tag == "Save")
-                {
-                    myCollision.GetComponent<SaveGame>().Interacting();
-                }
-                if (myCollision.tag == "FirstPower")
-                {
-                    myCollision
-                        .GetComponent<CollectingFirstPower>()
-                        .Interacting();
 
-                    InfoBox.SetActive(false);
+                if (myCollision.tag == "Rank")
+                {
+                    myCollision.GetComponent<GrowRanke>().Interacting();
                 }
             }
         }
@@ -296,11 +292,17 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("hasFirstPower", 0);
         PlayerPrefs.SetInt("momHasBB", 0);
         PlayerPrefs.SetInt("talkedToBroAfterBoss", 0);
+        PlayerPrefs.SetInt("isRankBig", 0);
+        PlayerPrefs.SetInt("safeAfterBoss", 0);
     }
 
     void OnResetBB(InputValue value)
     {
-        PlayerPrefs.SetInt("hasBB", 0);
-        myAnimator.SetBool("hasBB", false);
+        PlayerPrefs.SetFloat("currentHealth", 3f);
+        PlayerPrefs.SetInt("hasFirstPower", 1);
+        PlayerPrefs.SetInt("hasBell", 1);
+        myAnimator.SetBool("hasBell", true);
+        /* PlayerPrefs.SetInt("hasBB", 0);
+        myAnimator.SetBool("hasBB", false); */
     }
 }
