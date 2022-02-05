@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LeaveForest : MonoBehaviour
 {
@@ -68,10 +69,17 @@ public class LeaveForest : MonoBehaviour
         VAnimator.SetBool("isRunning", false);
         if (other.gameObject.tag == "Player")
         {
-            textComponent.text = string.Empty;
-            textSpeaker.text = speaker;
-            DialogeBox.SetActive(true);
-            StartDialogue();
+            if (PlayerPrefs.GetInt("momHasBB") == 1)
+            {
+                textComponent.text = string.Empty;
+                textSpeaker.text = speaker;
+                DialogeBox.SetActive(true);
+                StartDialogue();
+            }
+            if (PlayerPrefs.GetInt("momHasBB") == 0)
+            {
+                SceneManager.LoadSceneAsync(19);
+            }
         }
     }
 

@@ -8,13 +8,13 @@ public class GetFirstPowerBack : MonoBehaviour
 
     void Update()
     {
-        /* if (PlayerPrefs.GetInt("hasFirstPower") == 0)
+        if (PlayerPrefs.GetInt("hasFirstPower") == 0)
         {
             FirstPower.SetActive(true);
         }
         if (PlayerPrefs.GetInt("hasFirstPower") == 1)
         {
             FirstPower.SetActive(false);
-        } */
+        }
     }
 }

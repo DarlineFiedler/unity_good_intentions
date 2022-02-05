@@ -17,6 +17,9 @@ public class CollectingBell : MonoBehaviour
     GameObject Rune;
 
     [SerializeField]
+    GameObject GlowRune;
+
+    [SerializeField]
     GameObject InfoBox;
 
     [SerializeField]
@@ -84,7 +87,8 @@ public class CollectingBell : MonoBehaviour
         if (other.tag == "Player")
         {
             Text.SetActive(true);
-            Rune.SetActive(true);
+            Rune.SetActive(false);
+            GlowRune.SetActive(true);
         }
     }
 
@@ -93,7 +97,8 @@ public class CollectingBell : MonoBehaviour
         if (other.tag == "Player")
         {
             Text.SetActive(false);
-            Rune.SetActive(false);
+            Rune.SetActive(true);
+            GlowRune.SetActive(false);
         }
     }
 

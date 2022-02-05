@@ -2703,9 +2703,13 @@ GameObject:
   - component: {fileID: 1586575556}
   - component: {fileID: 1586575558}
   - component: {fileID: 1586575557}
+  - component: {fileID: 1586575562}
+  - component: {fileID: 1586575561}
+  - component: {fileID: 1586575560}
+  - component: {fileID: 1586575559}
   m_Layer: 0
   m_Name: CorruptHome
-  m_TagString: Untagged
+  m_TagString: curruptionPuddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2792,6 +2796,129 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1586575559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586575555}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: -8.596804, y: -1.2562511}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 33.333336, y: 33.333336}
+    newSize: {x: 33.333336, y: 33.333336}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5268898, y: 0.38151836}
+  m_EdgeRadius: 0
+--- !u!61 &1586575560
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586575555}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: -9.572545, y: 0.8150016}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 33.333336, y: 33.333336}
+    newSize: {x: 33.333336, y: 33.333336}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.2260761, y: 0.34249353}
+  m_EdgeRadius: 0
+--- !u!66 &1586575561
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586575555}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1586575560}
+    m_ColliderPaths:
+    - - X: -107514088
+        Y: 11834981
+      - X: -122227000
+        Y: 11834981
+      - X: -122227000
+        Y: 7725058
+      - X: -107514088
+        Y: 7725058
+  - m_Collider: {fileID: 1586575559}
+    m_ColliderPaths:
+    - - X: -100000304
+        Y: -12785903
+      - X: -106322984
+        Y: -12785903
+      - X: -106322984
+        Y: -17364124
+      - X: -100000304
+        Y: -17364124
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -10.751438, y: 0.7725058}
+      - {x: -10.751438, y: 1.1834981}
+      - {x: -12.2227, y: 1.1834688}
+      - {x: -12.222671, y: 0.7725058}
+    - - {x: -10.00006, y: -1.7364124}
+      - {x: -10.00006, y: -1.2785903}
+      - {x: -10.632298, y: -1.2786196}
+      - {x: -10.632269, y: -1.7364124}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &1586575562
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586575555}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &1596373232 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1596373232, guid: 339d1ff1be097ef41b2ced5e93ec4140, type: 3}
