@@ -148,9 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225a3b6865fda6a4a8009ee2d7d64357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuClip: {fileID: 8300000, guid: a8a0062d61ec85949a95dcc989762bb7, type: 3}
-  mainClip: {fileID: 8300000, guid: a3737a21ac7868d4098152be648cac71, type: 3}
-  bossClip: {fileID: 8300000, guid: 4643a308273452546aa3bfd20971d0e9, type: 3}
 --- !u!95 &7582600375646637691
 Animator:
   serializedVersion: 4
@@ -183,3 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a3b3316adafe2f4cafe7f90b0d48563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSrc: {fileID: 7582600375646637693}
+  menuClip: {fileID: 8300000, guid: a8a0062d61ec85949a95dcc989762bb7, type: 3}
+  mainClip: {fileID: 8300000, guid: a3737a21ac7868d4098152be648cac71, type: 3}
+  bossClip: {fileID: 8300000, guid: 4643a308273452546aa3bfd20971d0e9, type: 3}

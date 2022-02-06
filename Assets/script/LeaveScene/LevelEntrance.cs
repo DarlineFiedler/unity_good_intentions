@@ -11,9 +11,8 @@ public class LevelEntrance : MonoBehaviour
     [SerializeField]
     int nextSceneIndex;
 
-    [SerializeField]
-    float levelLoadDelay = 0.2f;
-
+    /*   [SerializeField]
+    float levelLoadDelay = 0.2f; */
     public GameObject Text;
 
     void Start()
@@ -27,21 +26,22 @@ public class LevelEntrance : MonoBehaviour
         {
             PlayerPrefs.SetInt("hideControll", 1);
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            StartCoroutine(LoadNextLevel());
+
+            // StartCoroutine(LoadNextLevel());
+            SceneManager.LoadSceneAsync (nextSceneIndex);
 
             // set nextSceneInde
             PlayerPrefs.SetInt("previosSceneIndex", currentSceneIndex);
         }
     }
 
-    IEnumerator LoadNextLevel()
+    /*  IEnumerator LoadNextLevel()
     {
-        yield return new WaitForSecondsRealtime(levelLoadDelay);
+        yield return new WaitForSecondsRealtime(0f);
 
         // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync (nextSceneIndex);
-    }
-
+    } */
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

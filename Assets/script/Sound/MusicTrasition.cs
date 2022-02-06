@@ -5,6 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class MusicTrasition : MonoBehaviour
 {
+    public AudioSource audioSrc;
+
+    public AudioClip menuClip;
+
+    public AudioClip mainClip;
+
+    public AudioClip bossClip;
+
+    Scene scene;
+
     private static MusicTrasition backgroundMusic;
 
     private void Awake()
@@ -13,10 +23,14 @@ public class MusicTrasition : MonoBehaviour
         {
             backgroundMusic = this;
             DontDestroyOnLoad (backgroundMusic);
-            if (SceneManager.GetActiveScene().buildIndex == 15)
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            scene = SceneManager.GetActiveScene();
+            /* if (SceneManager.GetActiveScene().buildIndex == 15)
             {
                 SceneManager.sceneLoaded += OnSceneLoaded;
-            }
+            } */
         }
         else
         {
@@ -24,11 +38,38 @@ public class MusicTrasition : MonoBehaviour
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 15)
+        if (scene.buildIndex == 0)
         {
-            Destroy (backgroundMusic);
+            audioSrc.Stop();
+            audioSrc.clip = menuClip;
+            audioSrc.Play();
+        }
+        else if (scene.buildIndex == 15)
+        {
+            if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 0)
+            {
+                audioSrc.Stop();
+                audioSrc.clip = bossClip;
+                audioSrc.Play();
+            }
+            else
+            {
+                audioSrc.Stop();
+                audioSrc.clip = mainClip;
+                audioSrc.Play();
+            }
+        }
+        else if (
+            scene.buildIndex == 1 ||
+            scene.buildIndex == 14 ||
+            scene.buildIndex == 18
+        )
+        {
+            audioSrc.Stop();
+            audioSrc.clip = mainClip;
+            audioSrc.Play();
         }
     }
 }

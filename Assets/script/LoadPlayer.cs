@@ -32,7 +32,8 @@ public class LoadPlayer : MonoBehaviour
             if (levelEntries[i] == PlayerPrefs.GetInt("previosSceneIndex"))
             {
                 player.localScale =
-                    new Vector2(PlayerPrefs.GetFloat("playerFacing", 1f), 1f);
+                    new Vector2(PlayerPrefs.GetFloat("playerFacing", 0.6f),
+                        0.6f);
                 player.position = spawnPoints[i].position;
             }
         }

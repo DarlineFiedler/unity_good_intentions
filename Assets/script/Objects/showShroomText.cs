@@ -81,7 +81,6 @@ public class showShroomText : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(shroomName) == 1)
         {
-            // Destroy (Text);
             myBoxCollider.enabled = false;
         }
         else

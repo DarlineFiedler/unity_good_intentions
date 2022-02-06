@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: shroom
       objectReference: {fileID: 0}
+    - target: {fileID: 7768755292599643073, guid: 1ba39ec93e8ec9c4086bf6dc0a8b0136, type: 3}
+      propertyPath: m_TagString
+      value: Shroom
+      objectReference: {fileID: 0}
     - target: {fileID: 7928045068679661028, guid: 1ba39ec93e8ec9c4086bf6dc0a8b0136, type: 3}
       propertyPath: speaker
       value: Bell

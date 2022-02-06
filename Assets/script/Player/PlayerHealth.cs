@@ -48,10 +48,12 @@ public class PlayerHealth : MonoBehaviour
         if (PlayerPrefs.GetFloat("currentHealth") <= 1f)
         {
             catHeadAnimator.SetBool("lowHealth", true);
+            myAnimator.SetBool("hasLowHealth", true);
         }
         else
         {
             catHeadAnimator.SetBool("lowHealth", false);
+            myAnimator.SetBool("hasLowHealth", false);
         }
 
         if (PlayerPrefs.GetFloat("currentHealth") <= 0)

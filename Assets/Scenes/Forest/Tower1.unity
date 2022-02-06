@@ -2035,7 +2035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751815fedaac6ee4b918327044010102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0.01, y: 0.01}
+  parallaxEffectMultiplier: {x: 0.001, y: 0.001}
   cameraTransform: {fileID: 1034808455}
 --- !u!1 &1661812648
 GameObject:

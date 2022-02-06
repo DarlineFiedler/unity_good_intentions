@@ -69,14 +69,14 @@ public class LeaveForest : MonoBehaviour
         VAnimator.SetBool("isRunning", false);
         if (other.gameObject.tag == "Player")
         {
-            if (PlayerPrefs.GetInt("momHasBB") == 1)
+            if (PlayerPrefs.GetInt("momHasBB") == 0)
             {
                 textComponent.text = string.Empty;
                 textSpeaker.text = speaker;
                 DialogeBox.SetActive(true);
                 StartDialogue();
             }
-            if (PlayerPrefs.GetInt("momHasBB") == 0)
+            if (PlayerPrefs.GetInt("momHasBB") == 1)
             {
                 SceneManager.LoadSceneAsync(19);
             }

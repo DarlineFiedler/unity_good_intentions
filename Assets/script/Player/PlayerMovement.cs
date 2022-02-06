@@ -60,6 +60,12 @@ public class PlayerMovement : MonoBehaviour
             Orb.SetActive(true);
             BellOrb.SetActive(true);
         }
+        else
+        {
+            myAnimator.SetBool("hasBell", false);
+            Orb.SetActive(false);
+            BellOrb.SetActive(false);
+        }
 
         if (PlayerPrefs.GetInt("hasBB") == 1)
         {
@@ -146,10 +152,10 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerPrefs
                 .SetFloat("playerFacing",
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 1f : -1f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.6f : -0.6f);
             float turnPlayer =
-                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 1f : -1f;
-            transform.localScale = new Vector2(turnPlayer, 1f);
+                Mathf.Sign(myRigidbody.velocity.x) == 1 ? 0.6f : -0.6f;
+            transform.localScale = new Vector2(turnPlayer, 0.6f);
         }
     }
 
@@ -157,13 +163,15 @@ public class PlayerMovement : MonoBehaviour
     {
         bool playerHasHorizontalSpeed =
             Mathf.Abs(myRigidbody.velocity.x) > Mathf.Epsilon;
-        if (
-            !myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) /* ||
-            playerHasHorizontalSpeed */
-        )
+        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return;
         }
+
+        Debug.Log(PlayerPrefs.GetFloat("currentHealth") > 0);
+        Debug.Log(PlayerPrefs.GetInt("isHealing") == 0);
+        Debug.Log(PlayerPrefs.GetInt("isTalking") == 0);
+        Debug.Log (myCollision);
         if (
             PlayerPrefs.GetFloat("currentHealth") > 0 &&
             PlayerPrefs.GetInt("isHealing") == 0 &&
@@ -175,65 +183,88 @@ public class PlayerMovement : MonoBehaviour
                     .IsTouchingLayers(LayerMask.GetMask("Interactables"))
             )
             {
-                if (!playerHasHorizontalSpeed)
+                if (myCollision != null)
                 {
-                    if (myCollision.tag == "Mom")
+                    if (myCollision.tag == "Entrance")
                     {
-                        myCollision
-                            .GetComponent<MomBehavior>()
-                            .Interacting("player");
+                        myCollision.GetComponent<LevelEntrance>().Interacting();
                     }
-                    if (myCollision.tag == "MomWorry")
-                    {
-                        myCollision
-                            .GetComponent<MomWorryBehavior>()
-                            .Interacting();
-                    }
-                    if (myCollision.tag == "Bro")
-                    {
-                        myCollision.GetComponent<BroBehavior>().Interacting();
-                    }
-                    if (myCollision.tag == "BroWorry")
-                    {
-                        myCollision
-                            .GetComponent<BroWorryBehavior>()
-                            .Interacting();
-                    }
-                    if (myCollision.tag == "Bell")
-                    {
-                        myCollision
-                            .GetComponent<CollectingBell>()
-                            .Interacting();
-                    }
-                    if (myCollision.tag == "BB")
-                    {
-                        myCollision.GetComponent<BbBehavior>().Interacting();
-                    }
-                    if (myCollision.tag == "Robbenraupe")
-                    {
-                        myCollision
-                            .GetComponent<RobbenBehavior>()
-                            .Interacting();
-                    }
-                }
-                if (myCollision.tag == "Entrance")
-                {
-                    myCollision.GetComponent<LevelEntrance>().Interacting();
-                }
 
-                if (myCollision.tag == "Shroom")
-                {
-                    if (myCollision.GetComponent<showShroomText>() != null)
+                    if (myCollision.tag == "Shroom")
+                    {
+                        if (myCollision.GetComponent<showShroomText>() != null)
+                        {
+                            myCollision
+                                .GetComponent<showShroomText>()
+                                .Interacting();
+                        }
+                    }
+
+                    if (myCollision.tag == "Rank")
+                    {
+                        myCollision.GetComponent<GrowRanke>().Interacting();
+                    }
+
+                    if (myCollision.tag == "FirstPower")
                     {
                         myCollision
-                            .GetComponent<showShroomText>()
+                            .GetComponent<CollectingFirstPower>()
                             .Interacting();
                     }
-                }
+                    if (myCollision.tag == "Wallblock")
+                    {
+                        myCollision.GetComponent<OpenWallblock>().Interacting();
+                    }
 
-                if (myCollision.tag == "Rank")
-                {
-                    myCollision.GetComponent<GrowRanke>().Interacting();
+                    if (!playerHasHorizontalSpeed)
+                    {
+                        if (myCollision.tag == "Mom")
+                        {
+                            myCollision
+                                .GetComponent<MomBehavior>()
+                                .Interacting("player");
+                        }
+                        if (myCollision.tag == "MomWorry")
+                        {
+                            myCollision
+                                .GetComponent<MomWorryBehavior>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "Bro")
+                        {
+                            myCollision
+                                .GetComponent<BroBehavior>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "BroWorry")
+                        {
+                            myCollision
+                                .GetComponent<BroWorryBehavior>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "Bell")
+                        {
+                            myCollision
+                                .GetComponent<CollectingBell>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "BB")
+                        {
+                            myCollision
+                                .GetComponent<BbBehavior>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "Robbenraupe")
+                        {
+                            myCollision
+                                .GetComponent<RobbenBehavior>()
+                                .Interacting();
+                        }
+                        if (myCollision.tag == "Save")
+                        {
+                            myCollision.GetComponent<SaveGame>().Interacting();
+                        }
+                    }
                 }
             }
         }
@@ -262,9 +293,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnOpenMenu(InputValue value)
     {
-        //SceneManager.LoadSceneAsync(0);
-        Debug.Log("QUIT!");
-        Application.Quit();
+        SceneManager.LoadSceneAsync(0);
+        /*  Debug.Log("QUIT!");
+        Application.Quit(); */
     }
 
     void OnResetBell(InputValue value)
