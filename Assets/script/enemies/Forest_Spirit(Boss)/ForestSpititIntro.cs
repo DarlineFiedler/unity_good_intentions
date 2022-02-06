@@ -6,6 +6,8 @@ public class ForestSpititIntro : MonoBehaviour
 {
     [SerializeField]
     BoxCollider2D bossBoxCollider;
+    [SerializeField]
+    BoxCollider2D wall;
 
     [SerializeField]
     Rigidbody2D bossRigidbody;
@@ -30,6 +32,7 @@ public class ForestSpititIntro : MonoBehaviour
             bossBoxCollider.enabled = true;
             bossRigidbody.bodyType = RigidbodyType2D.Kinematic;
             myBoxCollider.enabled = false;
+            wall.enabled = false;
         }
     }
 }
