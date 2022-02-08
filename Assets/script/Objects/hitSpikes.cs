@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class hitSpikes : MonoBehaviour
 {
@@ -20,15 +21,14 @@ public class hitSpikes : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (
-                PlayerPrefs.GetInt("safePoint") == 7 ||
-                PlayerPrefs.GetInt("safePoint") == 13 ||
-                PlayerPrefs.GetInt("safePoint") == 15 ||
-                PlayerPrefs.GetInt("safePoint") == 17
-            )
-            {
+            
+            if((SceneManager.GetActiveScene().buildIndex == 7 && PlayerPrefs.GetInt("safePoint") == 7)||
+               (SceneManager.GetActiveScene().buildIndex == 13 && PlayerPrefs.GetInt("safePoint") == 13 ) ||
+               (SceneManager.GetActiveScene().buildIndex == 15&&PlayerPrefs.GetInt("safePoint") == 15 ) ||
+               (SceneManager.GetActiveScene().buildIndex == 17&& PlayerPrefs.GetInt("safePoint") == 17)) {
                 PlayerPrefs.SetInt("previosSceneIndex", 1000);
-            }
+               }
+            
             StartCoroutine(SetPlayerPosition());
         }
     }
