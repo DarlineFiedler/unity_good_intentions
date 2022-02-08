@@ -30,7 +30,7 @@ public class TriggerCredits : MonoBehaviour
 
     IEnumerator DestroyObjectToCleanSecen()
     {
-        yield return new WaitForSecondsRealtime(15f);
+        yield return new WaitForSecondsRealtime(20f);
         SceneManager.LoadSceneAsync(0);
         CreditAnimator.SetBool("startCredits", false);
         /*     Background.SetActive(false);

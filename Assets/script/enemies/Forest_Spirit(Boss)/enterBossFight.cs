@@ -25,6 +25,8 @@ public class enterBossFight : MonoBehaviour
 
     public GameObject TriggerBoss;
 
+    public GameObject Wall;
+
     void Start()
     {
         if (PlayerPrefs.GetInt("ForestSpiritIsDead") == 1)
@@ -33,6 +35,7 @@ public class enterBossFight : MonoBehaviour
             Destroy (gameObject);
             Destroy (Barrier);
             Destroy (TriggerBoss);
+            Destroy (Wall);
         }
         else
         {
